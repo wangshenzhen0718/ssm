@@ -119,9 +119,22 @@
                 <result property="carType" column="car_type"/>
             </resultMap>
 
-5. 查询所有
+6. 查询所有
     <select id="selectAll" resultMap="studentMap">
             select * from  t_car
     </select>
     List<Car> cars = sqlSession.selectList("selectAll");
     cars.forEach(car -> System.out.println(car));
+
+7．在sql mapper.xml文件当中有一个namespace,这个属性是用来指定命名空间的。用来防止id重复。
+    怎么用?
+    在xml文件中:
+    <mapper namespace="example">
+        <insert id="insertCar">
+            insert into t_car(id, car_num, brand, guide_price, produce_time, car_type)
+            values (null, #{carNum}, #{brand}, #{guidePrice}, #{produceTime}, #{carType})
+        </insert>
+    </mapper>
+    在java
+    程序中写法:
+    sqlSession.insert("example.insertCar", car);

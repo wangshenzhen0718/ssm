@@ -17,7 +17,10 @@
             </dataSource>
         </environment>
     </environments>
+    <!--执行XxxMapper.xml文件的路径-->
+    <!--resource属性自动会从类的根路径下开始查找资源。-->
     <mappers>
         <mapper resource="CarMapper.xml"/>
+        <!--<mapper resource="com/CarMapper2.xml"/>-->
     </mappers>
 </configuration>

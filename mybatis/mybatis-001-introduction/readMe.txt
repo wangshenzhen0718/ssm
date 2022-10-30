@@ -109,5 +109,16 @@ XML是什么?
     <settings>
     <setting name="logImpl" value="STDOUT_LOGGING" /></settings>
     这个标签在编写的时候要注意，它应该出现在environments标签之前。注意顺序。当然，不需要记忆这个顺序。因为有dtd文件进行约束呢。我们只要参考dtd约束即可。
+    *集成logback日志框架。
+        logback日志框架实现了slf4j标准。(沙拉风:日志门面。日志标准。)第一步:引入logback的依赖。
+        <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId><version>1.2.11</version>
+        </dependency>
+        第二步:引入logback所必须的xml配置文件。
+        这个配置文件的名字必须叫做: logback.xml或者logback-test.xml，不能是其它的名字。这个配置文件必须放到类的根路径下。
+        不能是其他位置
+        主要配置日志输出相关的级别以及日志具体的格式
+
 
 

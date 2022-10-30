@@ -59,3 +59,69 @@
        怎么获取的?
        调用了pojo对象的get方法。例如:car.getCarNum()
 
+3.delete
+    *需求:根据id副除数据
+        将id=59的数据副除。
+        实现:
+    int count = sqlSession.delete( "deleteById",23);
+    <delete id="deleteById">
+            delete from t_car where id=#{id}
+    </delete>
+    注意:如果占位符只有一个，那么#的大括号里可以随意。但是最好见名知意。
+
+4. update
+    *需求:根据id修改某条记录。
+    实现:
+        <update id="updateById">
+                update t_car set car_num=#{carNum}, brand=#{brand}, guide_price=#{guidePrice}, produce_time=#{produceTime}, car_type=#{carType} where id=#{id}
+        </update>
+        SqlSession sqlSession = SqlSessionUtil.getSqlSession();
+                Car car = new Car();
+                car.setId(28L);
+                car.setCarNum("1000");
+                car.setBrand("比亚迪 plus");
+                car.setGuidePrice(20.0);
+                car.setProduceTime("2022-10-31");
+                car.setCarType("电动车");
+                sqlSession.update("updateById", car);
+5. select（查一个，根据主键查询的话，返回的结果一定是一个。)
+    *需求:根据id查询。
+    实现:
+        <select id="selectById" resultType="com.wang.mybatis.pojo.Car">
+                select * from  t_car where id=#{id}
+        </select>
+        Car car = sqlSession.selectOne("selectById", 28);
+        要特别注意的是:
+        select标签中resultType属性，这个属性用来告诉mybatis，查询结果集封装成什么类型的java对象。
+        你需要告诉mybatis,resultType通常写的是:全限定类名。
+        输出结果有问题
+        Car(id=28, carNum=null, brand=比亚迪 plus, guidePrice=null, produceTime=null, carType=null)
+        id和brand属性有值。其他属性为null。
+        carNum以及其他的这几个属性没有赋上值的原因是什么?
+        select * from t_car where id = 28
+        执行结果:
+        +----+----------------+---------+-------------+--------------+-----------+
+        | id | brand          | car_num | guide_price | produce_time | car_type  |
+        +----+----------------+---------+-------------+--------------+-----------+
+        | 28 | 比亚迪 plus     | 1000    |       20.00 | 2022-10-31   | 燃油车      |
+        +----+----------------+---------+-------------+--------------+-----------+
+        原因就是属性名和列名对不上
+        解决办法：
+        1.sql查询取别名
+        select id as id,car_num as carNum  from  t_car where id=#{id}
+        2.使用resultMap映射
+        <resultMap id="studentMap" type="com.wang.mybatis.pojo.Car">
+                <id property="id" column="id"/>
+                <result property="carNum" column="car_num"/>
+                <result property="brand" column="brand"/>
+                <result property="guidePrice" column="guide_price"/>
+                <result property="produceTime" column="produce_time"/>
+                <result property="carType" column="car_type"/>
+            </resultMap>
+
+5. 查询所有
+    <select id="selectAll" resultMap="studentMap">
+            select * from  t_car
+    </select>
+    List<Car> cars = sqlSession.selectList("selectAll");
+    cars.forEach(car -> System.out.println(car));

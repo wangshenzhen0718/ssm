@@ -34,6 +34,18 @@ public class ConfigurationTest {
 
     }
 
+
+    @Test
+    public void testPoolArgs() throws IOException {
+        SqlSessionFactoryBuilder sqlSessionFactoryBuilder = new SqlSessionFactoryBuilder();
+        SqlSessionFactory build = sqlSessionFactoryBuilder.build(Resources.getResourceAsStream("mybatis-config.xml"));
+        for (int i = 0; i < 10; i++) {
+            SqlSession sqlSession = build.openSession();
+            sqlSession.selectOne("aaa.selectById", 1);
+        }
+
+    }
+
     @Test
     public void testDelete() throws IOException {
         SqlSessionFactoryBuilder sqlSessionFactoryBuilder = new SqlSessionFactoryBuilder();

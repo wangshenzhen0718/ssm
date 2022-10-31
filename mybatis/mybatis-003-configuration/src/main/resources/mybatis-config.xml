@@ -51,6 +51,9 @@
                 <property name="url" value="jdbc:mysql://localhost:3306/ssm"/>
                 <property name="username" value="root"/>
                 <property name="password" value="root"/>
+                <!--<property name="poolMaximumActiveConnections" value="3"/>
+                <property name="poolTimeToWait" value="2000"/>
+                <property name="poolMaximumCheckoutTime" value="10000"/>-->
             </dataSource>
         </environment>
 

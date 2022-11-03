@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user">
+    <resultMap id="studentMap" type="com.wang.mybatis.pojo.Car">
+        <id property="id" column="id"/>
+        <result property="carNum" column="car_num"/>
+        <result property="brand" column="brand"/>
+        <result property="guidePrice" column="guide_price"/>
+        <result property="produceTime" column="produce_time"/>
+        <result property="carType" column="car_type"/>
+    </resultMap>
+
+    <insert id="insertCar">
+        insert into t_car(id, car_num, brand, guide_price, produce_time, car_type)
+        values (null, #{carNum}, #{brand}, #{guidePrice}, #{produceTime}, #{carType})
+    </insert>
+
+    <select id="selectById" resultMap="studentMap">
+        select *
+        from t_car
+        where id = #{id}
+    </select>
+
+    <select id="selectAll" resultMap="studentMap">
+        select *
+        from t_car
+    </select>
+</mapper>

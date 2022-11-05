@@ -21,7 +21,7 @@ public class Resources {
      * @Date: 2022/11/2 22:31
      * @return 指向资源文件的输入流
      */
-    public InputStream getResourceAsStream(String resource) {
+    public static InputStream getResourceAsStream(String resource) {
         return ClassLoader.getSystemClassLoader().getResourceAsStream(resource);
     }
 }

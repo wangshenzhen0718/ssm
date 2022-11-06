@@ -48,10 +48,11 @@ public class JdbcTransaction implements Transaction {
 
     }
     @Override
-    public void openSession() {
+    public void openConnection() {
         if (connection==null){
             try {
                 connection=dataSource.getConnection();
+                connection.setAutoCommit(isAutoCommit);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -60,6 +61,6 @@ public class JdbcTransaction implements Transaction {
 
     @Override
     public Connection getConnection() {
-        return null;
+        return connection;
     }
 }

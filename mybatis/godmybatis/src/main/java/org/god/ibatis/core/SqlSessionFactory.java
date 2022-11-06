@@ -21,9 +21,10 @@ public class SqlSessionFactory {
 
     private Transaction transaction;
 
-
-
-
-
     private Map<String,MappedStatement> mappedStatements;
+
+    public SqlSession openSession(){
+        SqlSession sqlSession = new SqlSession(this);
+        return sqlSession;
+    }
 }

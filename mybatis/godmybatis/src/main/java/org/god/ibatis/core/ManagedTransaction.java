@@ -19,7 +19,7 @@ public class ManagedTransaction implements Transaction {
     }
 
     @Override
-    public void openSession() {
+    public void openConnection() {
 
     }
 

@@ -14,7 +14,7 @@ public interface Transaction {
     void commit();
     void close();
 
-    void openSession();
+    void openConnection();
 
     Connection getConnection();
 }

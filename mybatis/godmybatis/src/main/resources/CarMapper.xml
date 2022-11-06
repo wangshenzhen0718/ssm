@@ -13,8 +13,8 @@
     </resultMap>
 
     <insert id="insertCar">
-        insert into t_car(id, car_num, brand, guide_price, produce_time, car_type)
-        values (null, #{carNum}, #{brand}, #{guidePrice}, #{produceTime}, #{carType})
+        insert into t_user(id, car_num, brand, guide_price, produce_time, car_type)
+        values (#{id}, #{carNum}, #{brand}, #{guidePrice}, #{produceTime}, #{carType})
     </insert>
 
     <select id="selectById" resultMap="studentMap">

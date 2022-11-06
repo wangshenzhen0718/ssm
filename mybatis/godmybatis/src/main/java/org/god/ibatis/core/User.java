@@ -6,19 +6,19 @@ import lombok.NoArgsConstructor;
 
 /**
  * @Author:wsz
- * @Date: 2022/10/30 12:27
- * @Description: 汽车实体类
+ * @Date: 2022/11/5 22:36
+ * @Description:
  * @Version: 1.0
  * @Since: 1.0
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Car {
-    private Long id;
-    private String carNum;
+public class User {
+    private String id;
+    private String num;
     private String brand;
-    private Double guidePrice;
-    private String produceTime;
-    private String carType;
+    private String price;
+    private String time;
+    private String type;
 }

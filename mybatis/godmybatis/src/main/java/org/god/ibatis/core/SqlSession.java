@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import java.lang.reflect.Method;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 
 /**
  * @Author:wsz
@@ -56,6 +58,39 @@ public class SqlSession {
         }
 
         return count;
+    }
+
+    public Object selectOne(String sqlId,Object param) {
+        Object obj=null;
+        try {
+            factory.getTransaction().openConnection();
+            Connection connection = factory.getTransaction().getConnection();
+            MappedStatement mappedStatement = factory.getMappedStatements().get(sqlId);
+            String godBatisSql = mappedStatement.getSql();
+            String sql = godBatisSql.replaceAll("#\\{[a-zA-Z0-9_$]*}", "?");
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1,param.toString());
+            ResultSet resultSet = ps.executeQuery();
+            String resultType = mappedStatement.getResultType();
+            if (resultSet.next()){
+                Class<?> resultTypeClass = Class.forName(resultType);
+                obj = resultTypeClass.newInstance();
+                ResultSetMetaData metaData = resultSet.getMetaData();
+                int columnCount = metaData.getColumnCount();
+                for (int i = 0; i < columnCount; i++) {
+                    String columnName = metaData.getColumnName(i+1);
+                    //这种设置对数据库字段有要求 不能驼峰
+                    String getMethodName  = "set" + columnName.toUpperCase().charAt(0) + columnName.substring(1);
+                    Method setMethod = resultTypeClass.getDeclaredMethod(getMethodName,String.class);
+                    setMethod.invoke(obj,resultSet.getString(columnName));
+
+                }
+
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return obj;
     }
 
     public static void main(String[] args) {

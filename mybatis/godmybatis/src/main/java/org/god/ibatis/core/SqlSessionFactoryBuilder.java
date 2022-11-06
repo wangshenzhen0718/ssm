@@ -72,10 +72,10 @@ public class SqlSessionFactoryBuilder {
                 List<Element> elements = mapper.elements();
                 for (Element element : elements) {
                     String id = element.attributeValue("id");
-                    String resultMap = element.attributeValue("resultMap");
+                    String resultType = element.attributeValue("resultType");
                     String sqlId=namespace+"."+ id;
                     String sql=element.getTextTrim();
-                    MappedStatement mappedStatement = new MappedStatement(sql, resultMap);
+                    MappedStatement mappedStatement = new MappedStatement(sql, resultType);
                     mappedStatements.put(sqlId,mappedStatement);
                 }
 

@@ -8,6 +8,18 @@ import org.god.ibatis.utils.Resources;
 import org.junit.Test;
 
 public class TestGodBatis {
+
+    @Test
+    public void testSelectOne() {
+        SqlSessionFactoryBuilder sqlSessionFactoryBuilder = new SqlSessionFactoryBuilder();
+        SqlSessionFactory sqlSessionFactory = sqlSessionFactoryBuilder.build(Resources.getResourceAsStream("godbatis-config.xml"));
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        Object o = sqlSession.selectOne("car.selectById", "1");
+        System.out.println(o.toString());
+        sqlSession.commit();
+        sqlSession.close();
+
+    }
     @Test
     public void testSqlSessionFactory() {
         SqlSessionFactoryBuilder sqlSessionFactoryBuilder = new SqlSessionFactoryBuilder();

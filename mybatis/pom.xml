@@ -16,6 +16,7 @@
         <module>parse-xml-by-dom4j</module>
         <module>godmybatis</module>
         <module>mybatis-004-web</module>
+        <module>javassist-test</module>
     </modules>
 
     <properties>

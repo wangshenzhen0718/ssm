@@ -7,5 +7,5 @@ public interface AccountDao {
     Account selectById(Long id);
 
     int updateAccount(Account account);
-    int insertAccount(Account account);
+    //int insertAccount(Account account);
 }

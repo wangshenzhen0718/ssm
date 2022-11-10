@@ -19,8 +19,8 @@ public class AccountDaoImpl implements AccountDao {
         return sqlSession.update("account.updateById",account);
     }
 
-    @Override
+/*    @Override
     public int insertAccount(Account account) {
         return 0;
-    }
+    }*/
 }

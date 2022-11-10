@@ -20,7 +20,8 @@ import java.io.IOException;
  */
 //@WebServlet("transfer")
 public class AccountServlet extends HttpServlet {
-    private AccountService accountService=new AccountServiceImpl();
+    private AccountService accountService = new AccountServiceImpl();
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //接收前端传来的参数
@@ -28,12 +29,12 @@ public class AccountServlet extends HttpServlet {
         String toActno = request.getParameter("toActno");
         Double money = Double.parseDouble(request.getParameter("money"));
         try {
-            accountService.transfer(fromActno,toActno,money);
-            response.sendRedirect(request.getContextPath()+"/success.html");
+            accountService.transfer(fromActno, toActno, money);
+            response.sendRedirect(request.getContextPath() + "/success.html");
         } catch (MoneyNotEnoughException e) {
-            response.sendRedirect(request.getContextPath()+"/error1.html");
+            response.sendRedirect(request.getContextPath() + "/error1.html");
         } catch (TransferNotSuccessException e) {
-            response.sendRedirect(request.getContextPath()+"/error2.html");
+            response.sendRedirect(request.getContextPath() + "/error2.html");
         }
     }
 }

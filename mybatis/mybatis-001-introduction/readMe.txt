@@ -5,7 +5,7 @@
     *第一步,打包方式jar
     *第二步:引入依赖
             - mybatis依赖
-            - mysql驱动依赖*第三步:
+            - mysql驱动依赖
     *第三步:编写mybatis核心配置文件:mybatis-config. xml
           注意:
           第一。这个文件名不是必须叫做mybatis-config.xml，可以用其他的名字。只是大家都采用这个名字。
@@ -32,7 +32,7 @@
 
 
 
-3．从XNL中构建SqlSessionFactory
+3．从XML中构建SqlSessionFactory
 通过官方的这句话，你能想到什么呢?
     第一。在MyBatis中一定是有一个很重要的对象，这个对象是:SqlSessionFactory对象。
     第二。SqlSessionFactory对象的创建需要XML。
@@ -49,7 +49,8 @@ XML是什么?
 5．关于第一个程序的小细节
     * mybatis中sql语句的结尾";"可以省略。* Resources.getResourceAsStream
     小技巧:以后凡是遇到resource这个单词，大部分情况下，这种加载资源的方式就是从类的根路径下开始加载。(开始查找)
-    优点:采用这种方式，从类路径当中加救资源，项目的移植性很强。项目从windows移植到Linux，代码不需要修改，因为这个资源文件一直都在类路径当中。[* Inputstream is = new FileInputstream("d : \\mybatis-config.xml");
+    优点:采用这种方式，从类路径当中加载资源，项目的移植性很强。项目从windows移植到Linux，代码不需要修改，因为这个资源文件一直都在类路径当中。
+    * Inputstream is = new FileInputstream("d : \\mybatis-config.xml");
     采用这种方式也可以。
     缺点:可移植性太差，程序不够他壮。可能会移植到其他的操作系统当中。导致以上路径无效，还需要修改java代码中的路径。这样违背了OCP原则。
     已经验证了:
@@ -61,12 +62,13 @@ XML是什么?
     系统类加载器有一个方法叫做:getResourceAsStream
     它就是从类路径当中加载资源的。
     通过源代码分析发现:
-    InputStream is = Resources.getResourceAsStream( ""mybatis-config.xml");底层的源代码其实就是:
+    InputStream is = Resources.getResourceAsStream( "mybatis-config.xml");底层的源代码其实就是:
     InputStream is = classLoader.getSystemClassLoader().getResourceAsStream("mybatis-config.xml");
 
     * CarMapper.xml文件的名字是固定的吗? CarMapper.xml文件的路径是固定的吗?
     都不是固定的。
-    <mapper resource="CarMapper.xml"/> resource属性:这种方式是从类路径当中加载资源。<mapper url="file:///d:/CarMapper.xml"/> url属性:这种方式是从绝对路径当中加载资源,
+    <mapper resource="CarMapper.xml"/> resource属性:这种方式是从类路径当中加载资源。
+    <mapper url="file:///d:/CarMapper.xml"/> url属性:这种方式是从绝对路径当中加载资源,
 
 6．关于mybatis的事务管理机制。（深度剖析)
     *在mybatis-config.xml文件中，可以通过以下的配置进行mybatis的事务管理
@@ -74,7 +76,8 @@ XML是什么?
     type属性的值包括两个:
     JDBC(jdbc)
     MANAGED(managed)
-    type后面的值，只有以上两个值可选，不区分大小写。*在mybatis中提供了两种事务管理机制:
+    type后面的值，只有以上两个值可选，不区分大小写。
+    *在mybatis中提供了两种事务管理机制:
     第一种:JDBC事务管理器
     第二种:MANAGED事务管理器
     *JDBC事务管理器:
@@ -86,7 +89,8 @@ XML是什么?
         使用JDBC事务管理器的话，底层创建的事务管理器对象:JdbcTransaction对象。
 
         如果你编写的代码是下面的代码:
-        sqlSession sqlsession = sqlSessionFactory.openSession(true);表示没有开启事务。因为这种方式压根不会执行: conn.setAutoCommit(false);在JDBC事务中，没有执行conn.setAutoCommit(false);那么autoCommit就是true.如果autoCommit是true，就表示没有开启事务。只要执行任意一条DML语句就提交一次。
+        sqlSession sqlsession = sqlSessionFactory.openSession(true);表示没有开启事务。
+        因为这种方式压根不会执行: conn.setAutoCommit(false);在JDBC事务中，没有执行conn.setAutoCommit(false);那么autoCommit就是true.如果autoCommit是true，就表示没有开启事务。       只要执行任意一条DML语句就提交一次。
 
     MANAGED事务管理器:
     mybatis不再负责事务的管理了。事务管理交给其它容器来负责。例如: spring.我不管事务了，你来负责吧。
@@ -106,7 +110,6 @@ XML是什么?
     LO6432
     STDOUT_LOGGING
     *其中STDOUT_LOGGING是标准日志，mybatis已经实现了这种标准日志。mybatis框架本身已经实现了这种标准。只要开启即可。怎么开启呢?在mybatis-config.xml文件中使用settings标签进行配置开启。
-    <settings>
     <setting name="logImpl" value="STDOUT_LOGGING" /></settings>
     这个标签在编写的时候要注意，它应该出现在environments标签之前。注意顺序。当然，不需要记忆这个顺序。因为有dtd文件进行约束呢。我们只要参考dtd约束即可。
     *集成logback日志框架。

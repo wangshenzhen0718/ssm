@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class carMapperTest {
+public class CarMapperTest {
     private CarMapper carMapper = SqlSessionUtil.openSession().getMapper(CarMapper.class);
 
     @Test

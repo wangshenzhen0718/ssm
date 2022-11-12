@@ -90,3 +90,14 @@ org.apache.ibatis.exceptions.PersistenceException:
         Car(id=27, carNum=1111, brand=比亚迪汉, guidePrice=10.0, produceTime=2022-10-30, carType=电动车)
         Car(id=28, carNum=1000, brand=比亚迪 plus, guidePrice=20.0, produceTime=2022-10-31, carType=电动车)
         Car(id=30, carNum=100, brand=红旗111, guidePrice=100.0, produceTime=2022-10-31, carType=混合动力)
+
+2．向SQL语句当中拼接表名，就需要使用${}
+        现实业务当中，可能会存在分表存储数据的情况。因为一张表存的话，数据量太大。查询效率比较低。可以将这些数据有规律的分表存储，这样在查询的时候效率就比较高。因为扫描的数据量变少了。
+        日志表:专门存储日志信息的。如果t_log只有一张表，这张表中每一天都会产生很多log，慢慢的，这个表中数据会很多。怎么解决问题?
+        可以每天生成一个新表。每张表以当天日期作为名称，例如:
+        t_log_20220901
+        t_log_20220902
+        你想知道某一天的日志信息怎么办?
+        假设今天是20220901，那么直接查:t_log_20220901的表即可。
+    如：
+        select * from t_log_${date}

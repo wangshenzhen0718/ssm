@@ -135,3 +135,28 @@ org.apache.ibatis.exceptions.PersistenceException:
     </typeAliases>
     所有别名不区分大小写。
     namespace不能使用别名机制。
+
+
+6. mybatis-config.xml文件中的mappers标签。
+        <mapper resource="CarMapper.xml"/>要求类的根路径下必须有:CarHapper.xml
+        <mapper url="file:///d:/CarMapper.xml"/>要求在d:/下有CarMapper.xml文件
+        <mapper class="全限定接口名，带有包名"/>
+
+        mapper标签的属性可以有三个:
+        resource:这种方式是从类的根路径下开始查找资源。采用这种方式的话，你的配置文件需要放到类路径当中才行。
+        url:这种方式是一种绝对路径的方式，这种方式不要求配置文件必须放到类路径当中，哪里都行，只要提供一个绝对路径就行。这种方式使用极少，因为移植性太差。
+        class:这个位置提供的是mapper接口的全限定接口名，必须带有包名的。
+        思考:mapper标签的作用是指定SqlMapper.xml文件的路径，指定接口名有什么用呢?
+        <mapper class="com.wang.mybatis.mapper.CarMapper" />如果你class指定是:com.wang.mybatis.mapper.CarMapper
+        那么mybatis框架会自动去com/wang/mybatis/mapper目录下查找CarMapper.xml文件。
+        注意:也就是说:如果你采用这种方式，那么你必须保证CarMapper .xml文件和CarMapper接口必须在同一个目录下。并且名字一致
+        <package name="com.wang.mybatis.mapper"/>
+        <!--这种写法的前提是xml文件必须和接口放在一起，并且名字一致-->
+
+
+    提醒!!!!!!!!!!!!!!!!!!!!!!!
+        在IDEA的resources目录下新建多重目录的话，必须是这样创建:
+        com/wang/mybatis/mapper
+        不能这样:
+        com.wang.mybatis.mapper
+

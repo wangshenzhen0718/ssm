@@ -32,6 +32,10 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="CarMapper.xml"/>
+        <!--<mapper resource="CarMapper.xml"/>-->
+        <!--注意:也就是说:如果你采用这种方式，那么你必须保证CarMapper .xml文件和CarMapper接口必须在同一个目录下。并且名字一致-->
+        <!--<mapper class="com.wang.mybatis.mapper.CarMapper"/>-->
+        <!--前提是xml文件必须和接口放在一起，并且名字一致-->
+        <package name="com.wang.mybatis.mapper"/>
     </mappers>
 </configuration>

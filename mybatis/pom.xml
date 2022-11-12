@@ -17,6 +17,7 @@
         <module>godmybatis</module>
         <module>mybatis-004-web</module>
         <module>javassist-test</module>
+        <module>mybatis-005-crud2</module>
     </modules>
 
     <properties>

@@ -19,8 +19,8 @@
     </delete>
 
 
-    <select id="getCarByType" resultMap="carMap">
-        select *
+    <select id="getCarByType" resultType="CaR">
+        select id id,car_num carNum,brand brand,guide_price guidePrice,produce_time produceTime,car_type carType
         from t_car
         where car_type = ${car_type}
     </select>

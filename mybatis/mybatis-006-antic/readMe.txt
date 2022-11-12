@@ -119,3 +119,17 @@ org.apache.ibatis.exceptions.PersistenceException:
      concat('%','${brand}%','%')
     第四种方案:
     "%"#{brand}"%"
+
+
+5．关于MyBatis中别名机制:
+    <typeAliases>
+        <!--别名是自己取的-->
+        < ! --<typeAlias type="com.wang.mybatis.pojo.car" alias="aaa"/>
+        省略alias之后，别名就是类的简名，比如: com.wang.mybatis.pojo.Car的别名就是Car/car/cAR/cAr，不缺分大小写。
+        <typeAlias type="com.wang.mybatis.pojo.Car" />
+
+        <!--将这个包下的所有的类全部自动起别名。别名就是类简名。不区分大小写。-->
+        <package name="com.wang.mybatis.pojo"/>
+    </typeAliases>
+    所有别名不区分大小写。
+    namespace不能使用别名机制。

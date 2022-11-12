@@ -101,3 +101,6 @@ org.apache.ibatis.exceptions.PersistenceException:
         假设今天是20220901，那么直接查:t_log_20220901的表即可。
     如：
         select * from t_log_${date}
+3.批量删除:一次副除多条记录。
+    批量删除的SQL语句有两种写法:
+    第一种or: delete from t_car where id=1 or id=2 or id=3;第二种int: delete from t_car where id in(1,2,3);

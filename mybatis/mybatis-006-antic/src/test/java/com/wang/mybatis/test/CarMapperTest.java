@@ -21,5 +21,12 @@ public class CarMapperTest {
         cars.forEach(c-> System.out.println(c));
     }
 
+    @Test
+    public void testDeleteBatch(){
+        int count=carMapper.deleteBatch("28,30");
+        SqlSessionUtil.openSession().commit();
+        System.out.println(count);
+    }
+
 
 }

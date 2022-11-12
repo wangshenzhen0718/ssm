@@ -12,6 +12,9 @@
         <result property="produceTime" column="produce_time"/>
         <result property="carType" column="car_type"/>
     </resultMap>
+    <delete id="deleteBatch">
+        delete from t_car where id in (${ids})
+    </delete>
 
 
     <select id="getCarByType" resultMap="carMap">

@@ -104,3 +104,18 @@ org.apache.ibatis.exceptions.PersistenceException:
 3.批量删除:一次副除多条记录。
     批量删除的SQL语句有两种写法:
     第一种or: delete from t_car where id=1 or id=2 or id=3;第二种int: delete from t_car where id in(1,2,3);
+
+
+4.模糊查询:like
+    需求:根据汽车品牌进行模糊查询
+    select * from t_car where brand like '%奔驰%";
+    select * from t_car where brand like '%比亚迪%';
+    第一种方案:
+    "%${brand}%'
+    第二种方案:
+    concat函数，这个是mysq1数据库当中的一个函数，专门进行字符串拼接
+    concat( '%',#{brand}, '%')
+    第三种方案:
+     concat('%','${brand}%','%')
+    第四种方案:
+    "%"#{brand}"%"

@@ -28,5 +28,11 @@ public class CarMapperTest {
         System.out.println(count);
     }
 
+    @Test
+    public void testSelectByCar(){
+        List<Car> cars = carMapper.selectByLike("宝马");
+        cars.forEach(c-> System.out.println(c));
+    }
+
 
 }

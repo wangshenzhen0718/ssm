@@ -13,7 +13,9 @@
         <result property="carType" column="car_type"/>
     </resultMap>
     <delete id="deleteBatch">
-        delete from t_car where id in (${ids})
+        delete
+        from t_car
+        where id in (${ids})
     </delete>
 
 
@@ -24,7 +26,20 @@
     </select>
 
     <select id="getAllByAscOrDesc" resultMap="carMap">
-        select * from t_car order by produce_time ${ascOrDesc}
+        select *
+        from t_car
+        order by produce_time ${ascOrDesc}
+    </select>
+    <select id="selectByLike" resultMap="carMap">
+        select *
+        from t_car
+        where brand like
+              <!--'%${brand}%'-->
+              <!--'%#{brand}%'  不可 因为放在单引号内只是字符串❓-->
+              <!--concat('%',#{brand},'%')-->
+              <!--concat('%','${brand}%','%')-->
+              "%"#{brand}"%"
+
     </select>
 
 

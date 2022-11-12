@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wang.mybatis.mapper.CarMapper">
 
-    <resultMap id="studentMap" type="com.wang.mybatis.pojo.Car">
+    <resultMap id="carMap" type="com.wang.mybatis.pojo.Car">
         <id property="id" column="id"/>
         <result property="carNum" column="car_num"/>
         <result property="brand" column="brand"/>
@@ -14,10 +14,14 @@
     </resultMap>
 
 
-    <select id="getCarByType" resultMap="studentMap">
+    <select id="getCarByType" resultMap="carMap">
         select *
         from t_car
         where car_type = ${car_type}
+    </select>
+
+    <select id="getAllByAscOrDesc" resultMap="carMap">
+        select * from t_car order by produce_time ${ascOrDesc}
     </select>
 
 

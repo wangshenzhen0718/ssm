@@ -13,6 +13,7 @@ import java.util.List;
  */
 public interface CarMapper {
 
+    List<Car> getAllByAscOrDesc(String ascOrDesc);
     List<Car> getCarByType(String type);
 
 

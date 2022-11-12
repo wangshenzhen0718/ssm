@@ -73,3 +73,20 @@ org.apache.ibatis.exceptions.PersistenceException:
         #{}:底层使用PreparedStatement。特点:先进行SQL语句的编译，然后给SQL语句的占位符问号?传值。可以避免SQL注入的风险。
         ${}:底层使用Statement。特点:先进行SQL语句的拼接，然后再对SQL语句进行编译。存在SQL注入的风险。
 
+
+
+    如果需要SQL语句的关键字放到SQL语句中，只能使用$争，因为#{}是以值的形式放到SQL语句当中的。
+        #{}:
+        [main] DEBUG c.wang.mybatis.mapper.CarMapper.getAllByAscOrDesc - ==>  Preparing: select * from t_car order by produce_time ?
+        [main] DEBUG c.wang.mybatis.mapper.CarMapper.getAllByAscOrDesc - ==> Parameters: asc(String)
+
+        ${}:
+        [main] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Setting autocommit to false on JDBC Connection [com.mysql.cj.jdbc.ConnectionImpl@39a2bb97]
+        [main] DEBUG c.wang.mybatis.mapper.CarMapper.getAllByAscOrDesc - ==>  Preparing: select * from t_car order by produce_time asc
+        [main] DEBUG c.wang.mybatis.mapper.CarMapper.getAllByAscOrDesc - ==> Parameters:
+        [main] DEBUG c.wang.mybatis.mapper.CarMapper.getAllByAscOrDesc - <==      Total: 5
+        Car(id=1, carNum=1001, brand=宝马520Li, guidePrice=10.0, produceTime=2020-10-11, carType=燃油车)
+        Car(id=2, carNum=1002, brand=奔驰E00L, guidePrice=55.0, produceTime=2020-10-11, carType=新能源)
+        Car(id=27, carNum=1111, brand=比亚迪汉, guidePrice=10.0, produceTime=2022-10-30, carType=电动车)
+        Car(id=28, carNum=1000, brand=比亚迪 plus, guidePrice=20.0, produceTime=2022-10-31, carType=电动车)
+        Car(id=30, carNum=100, brand=红旗111, guidePrice=100.0, produceTime=2022-10-31, carType=混合动力)

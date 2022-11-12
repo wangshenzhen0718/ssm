@@ -15,5 +15,11 @@ public class CarMapperTest {
         cars.forEach(c-> System.out.println(c));
     }
 
+    @Test
+    public void testSelectAllByAscOrDesc(){
+        List<Car> cars = carMapper.getAllByAscOrDesc("asc");
+        cars.forEach(c-> System.out.println(c));
+    }
+
 
 }

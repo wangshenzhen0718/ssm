@@ -71,18 +71,17 @@ public class StudentMapperTest {
         System.out.println(i);
     }
 
-    /*这是多参数。
-    根据name 和 sex查询Student信息。
-    如果是多个参数的话,mybatis框架底层是怎么做的呢?
-    mybatis框架会自动创建一个Map集合。
-    并且Map集合是以这种方式存储参数的:
-            map.put("arg0",name);
-            map.put("arg1",sex);
-            map.put("param1",name);
-            map.put("param2",sex);*/
+    /*普通多个参数*/
     @Test
     public void testSelectByNameAndSex() {
         List<Student> students = studentMapper.selectStudentByNameAndSex("张三", '男');
+        students.forEach(student -> System.out.println(student));
+    }
+
+    /*通过注解传参*/
+    @Test
+    public void testSelectByNameAndSex2() {
+        List<Student> students = studentMapper.selectStudentByNameAndSex2("张三", '男');
         students.forEach(student -> System.out.println(student));
     }
 }

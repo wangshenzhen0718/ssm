@@ -102,8 +102,15 @@
         from t_student
         where
         <!--name=#{arg0} and sex=#{arg1}-->
-        <!--name=#{param1} and sex=#{param2}-->
-        name=#{name} and sex=#{sex}
+        name=#{param1} and sex=#{param2}
+    </select>
+
+    <!--使用了@Param后arg0，arg1就失效了，但是param1，param2还能用-->
+    <select id="selectStudentByNameAndSex2" resultType="com.wang.mybatis.pojo.Student">
+        select *
+        from t_student
+        where name = #{name}
+          and sex = #{sex}
     </select>
 
 

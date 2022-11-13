@@ -56,5 +56,25 @@ public class CarMapperTest {
 
     }
 
+    @Test
+    public void testSelectByIds() {
+        Long[] ids = {1L, 2L, 3L};
+        List<Car> cars = carMapper.selectByIds(ids);
+        for (Car car : cars) {
+            System.out.println(car);
+        }
+
+    }
+
+    @Test
+    public void testDeleteByIds() {
+        Long[] ids = {28L, 29L};
+        int count = carMapper.deleteByIds(ids);
+        System.out.println(count);
+        SqlSessionUtil.openSession().commit();
+        SqlSessionUtil.openSession().close();
+
+    }
+
 
 }

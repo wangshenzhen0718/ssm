@@ -24,5 +24,9 @@ public interface CarMapper {
 
     List<Car> selectByMultiConditionWithChoose(@Param("brand") String brand, @Param("guidePrice") Double guidePrice, @Param("carType") String carType);
 
+    List<Car> selectByIds(@Param("ids") Long[] ids);
+
+    int deleteByIds(@Param("ids") Long[] ids);
+
 
 }

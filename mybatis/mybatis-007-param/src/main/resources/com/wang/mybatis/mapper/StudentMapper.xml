@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wang.mybatis.mapper.StudentMapper">
+
+    <resultMap id="studentMap" type="com.wang.mybatis.pojo.Student">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="age" column="age"/>
+        <result property="height" column="height"/>
+        <result property="birth" column="birth"/>
+        <result property="sex" column="sex"/>
+    </resultMap>
+    <!--    parameterType属性的作用:
+        告诉mybatis框架，我这个方法的参数类型是什么类型。
+        mybatis框架自身带有类型自动推断机制，所以大部分情况下parameterType属性都是可以省略不写的。
+        SQL语句最终是这样的:
+        select from t_student where id = ?JDBC代码是一定要给?传值的,
+        怎么传值?ps.setXxx(第几个问号，传什么值)
+        ps.setLong(1,1L);
+        ps.setString
+        ps.setDate
+        ps.setInt
+        mybatis底层到底调用setXxx的哪个方法，取决于parameterType属性的值。
+        没有指定类型的时候会根据接口的参数推断
+        mybatis内置了类型
+        别名	映射的类型
+            _byte	byte
+            _long	long
+            _short	short
+            _int	int
+            _integer	int
+            _double	double
+            _float	float
+            _boolean	boolean
+            string	String
+            byte	Byte
+            long	Long
+            short	Short
+            int	Integer
+            integer	Integer
+            double	Double
+            float	Float
+            boolean	Boolean
+            date	Date
+            decimal	BigDecimal
+            bigdecimal	BigDecimal
+            object	Object
+            map	Map
+            hashmap	HashMap
+            list	List
+            arraylist	ArrayList
+            collection	Collection
+            iterator	Iterator
+            例：
+                parameterType="string"
+            也可以在#{}内指定类型
+                select * from t_student where name=#{name,javaType=String,jdbcType=VARCHAR}
+    -->
+
+    <select id="selectStudentById" resultMap="studentMap" parameterType="long">
+        select *
+        from t_student
+        where id = #{id}
+
+    </select>
+    <select id="selectStudentByName" resultType="com.wang.mybatis.pojo.Student" parameterType="string">
+        select *
+        from t_student
+        where name = #{name,javaType=String,jdbcType=VARCHAR}
+    </select>
+    <select id="selectStudentByBirth" resultType="com.wang.mybatis.pojo.Student">
+        select *
+        from t_student
+        where birth = #{birth,javaType=Date,jdbcType=DATE}
+    </select>
+    <select id="selectStudentBySex" resultType="com.wang.mybatis.pojo.Student">
+        select *
+        from t_student
+        where sex = #{birth,javaType=Character,jdbcType=CHAR}
+    </select>
+
+
+</mapper>

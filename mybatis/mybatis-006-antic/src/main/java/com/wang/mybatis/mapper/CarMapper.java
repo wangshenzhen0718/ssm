@@ -17,6 +17,7 @@ public interface CarMapper {
     List<Car> getCarByType(String type);
     int deleteBatch(String ids);
 
+    int insertCarUserGeneratedKeys(Car car);
 
     List<Car> selectByLike(String ids);
 

@@ -12,6 +12,10 @@
         <result property="produceTime" column="produce_time"/>
         <result property="carType" column="car_type"/>
     </resultMap>
+    <insert id="insertCarUserGeneratedKeys" useGeneratedKeys="true" keyProperty="id">
+        insert into t_car
+        values (#{id}, #{carNum}, #{brand}, #{guidePrice}, #{produceTime}, #{carType})
+    </insert>
     <delete id="deleteBatch">
         delete
         from t_car
@@ -20,7 +24,7 @@
 
 
     <select id="getCarByType" resultType="CaR">
-        select id id,car_num carNum,brand brand,guide_price guidePrice,produce_time produceTime,car_type carType
+        select id id, car_num carNum, brand brand, guide_price guidePrice, produce_time produceTime, car_type carType
         from t_car
         where car_type = ${car_type}
     </select>
@@ -34,11 +38,11 @@
         select *
         from t_car
         where brand like
-              <!--'%${brand}%'-->
-              <!--'%#{brand}%'  不可 因为放在单引号内只是字符串❓-->
-              <!--concat('%',#{brand},'%')-->
-              <!--concat('%','${brand}%','%')-->
-              "%"#{brand}"%"
+        <!--'%${brand}%'-->
+        <!--'%#{brand}%'  不可 因为放在单引号内只是字符串❓-->
+        <!--concat('%',#{brand},'%')-->
+        <!--concat('%','${brand}%','%')-->
+        "%"#{brand}"%"
 
     </select>
 

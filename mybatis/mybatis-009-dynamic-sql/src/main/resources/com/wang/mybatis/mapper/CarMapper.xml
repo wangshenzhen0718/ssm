@@ -28,6 +28,21 @@
         </if>
 
     </select>
+    <select id="selectByMultiConditionWithWhere" resultType="com.wang.mybatis.pojo.Car">
+        select * from t_car
+        <where>
+            <if test="brand!=null and brand!=''">
+                and brand like "%"#{brand}"%"
+            </if>
+            <if test="guidePrice!=null and guidePrice!=''">
+                and guide_price > #{guidePrice}
+            </if>
+            <if test="carType!=null and carType!=''">
+                and car_type = #{carType}
+            </if>
+        </where>
+
+    </select>
 
 
 </mapper>

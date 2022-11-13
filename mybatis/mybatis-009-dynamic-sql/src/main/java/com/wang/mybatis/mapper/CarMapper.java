@@ -15,6 +15,7 @@ import java.util.List;
 public interface CarMapper {
 
     List<Car> selectByMultiCondition(@Param("brand") String brand,@Param("guidePrice")  Double guidePrice,@Param("carType")  String carType);
+    List<Car> selectByMultiConditionWithWhere(@Param("brand") String brand,@Param("guidePrice")  Double guidePrice,@Param("carType")  String carType);
 
 
 }

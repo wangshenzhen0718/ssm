@@ -19,6 +19,15 @@ public class CarMapperTest {
 
     }
 
+    @Test
+    public void testSelectByMultiConditionWithWhere(){
+        List<Car> cars = carMapper.selectByMultiConditionWithWhere("宝马", 6.0, null);
+        for (Car car : cars) {
+            System.out.println(car);
+        }
+
+    }
+
 
 
 }

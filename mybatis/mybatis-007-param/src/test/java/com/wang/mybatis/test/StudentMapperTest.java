@@ -51,11 +51,11 @@ public class StudentMapperTest {
     @Test
     public void testInsertByMap() {
         HashMap<String, Object> map = new HashMap<>();
-        map.put("name","赵六");
-        map.put("age",18);
-        map.put("height",1.88);
-        map.put("birth",new Date(2020-10-10));
-        map.put("sex",'女');
+        map.put("name", "赵六");
+        map.put("age", 18);
+        map.put("height", 1.88);
+        map.put("birth", new Date(2020 - 10 - 10));
+        map.put("sex", '女');
         int i = studentMapper.insertStudentByMap(map);
         SqlSessionUtil.openSession().commit();
         SqlSessionUtil.openSession().close();
@@ -64,10 +64,25 @@ public class StudentMapperTest {
 
     @Test
     public void testInsertByPojo() {
-        Student student = new Student(null,"李七",'女',18,1.60,new Date(2000-01-01));
+        Student student = new Student(null, "李七", '女', 18, 1.60, new Date(2000 - 01 - 01));
         int i = studentMapper.insertStudentByPojo(student);
         SqlSessionUtil.openSession().commit();
         SqlSessionUtil.openSession().close();
         System.out.println(i);
+    }
+
+    /*这是多参数。
+    根据name 和 sex查询Student信息。
+    如果是多个参数的话,mybatis框架底层是怎么做的呢?
+    mybatis框架会自动创建一个Map集合。
+    并且Map集合是以这种方式存储参数的:
+            map.put("arg0",name);
+            map.put("arg1",sex);
+            map.put("param1",name);
+            map.put("param2",sex);*/
+    @Test
+    public void testSelectByNameAndSex() {
+        List<Student> students = studentMapper.selectStudentByNameAndSex("张三", '男');
+        students.forEach(student -> System.out.println(student));
     }
 }

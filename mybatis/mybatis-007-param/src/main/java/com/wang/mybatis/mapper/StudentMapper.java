@@ -9,9 +9,17 @@ import java.util.Map;
 public interface StudentMapper {
 
     List<Student> selectStudentById(Integer id);
+
     List<Student> selectStudentByName(String name);
+
     List<Student> selectStudentByBirth(Date birth);
+
     List<Student> selectStudentBySex(Character sex);
+
     int insertStudentByMap(Map map);
+
     int insertStudentByPojo(Student student);
+
+    List<Student> selectStudentByNameAndSex(String name, Character sex);
+
 }

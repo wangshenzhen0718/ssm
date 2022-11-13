@@ -90,5 +90,21 @@
         values (null, #{name}, #{age}, #{height}, #{birth}, #{sex})
     </insert>
 
+    <!--
+    注意:低版本的mybatis中，使用的是:#{0}和#{1}，以及#{2}...
+        高版本的mybatis中，使用的是:
+        #{arg0},#{arg1}
+        或
+        #{param0)#{param1}
+        -->
+    <select id="selectStudentByNameAndSex" resultType="com.wang.mybatis.pojo.Student">
+        select *
+        from t_student
+        where
+        <!--name=#{arg0} and sex=#{arg1}-->
+        <!--name=#{param1} and sex=#{param2}-->
+        name=#{name} and sex=#{sex}
+    </select>
+
 
 </mapper>

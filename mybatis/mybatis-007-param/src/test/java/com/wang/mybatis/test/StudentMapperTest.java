@@ -8,6 +8,7 @@ import org.junit.Test;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 public class StudentMapperTest {
@@ -29,9 +30,6 @@ public class StudentMapperTest {
 
     @Test
     public void testSelectByBirth() {
-    }
-
-    {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date parse = null;
         try {
@@ -48,5 +46,19 @@ public class StudentMapperTest {
         Character sex = Character.valueOf('男');
         List<Student> students = studentMapper.selectStudentBySex(sex);
         students.forEach(student -> System.out.println(student));
+    }
+
+    @Test
+    public void testInsertByMap() {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("name","赵六");
+        map.put("age",18);
+        map.put("height",1.88);
+        map.put("birth",new Date(2020-10-10));
+        map.put("sex",'女');
+        int i = studentMapper.insertStudentByMap(map);
+        SqlSessionUtil.openSession().commit();
+        SqlSessionUtil.openSession().close();
+        System.out.println(i);
     }
 }

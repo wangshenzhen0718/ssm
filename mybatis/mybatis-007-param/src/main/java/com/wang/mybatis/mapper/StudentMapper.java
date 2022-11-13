@@ -4,6 +4,7 @@ import com.wang.mybatis.pojo.Student;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public interface StudentMapper {
 
@@ -11,4 +12,5 @@ public interface StudentMapper {
     List<Student> selectStudentByName(String name);
     List<Student> selectStudentByBirth(Date birth);
     List<Student> selectStudentBySex(Character sex);
+    int insertStudentByMap(Map map);
 }

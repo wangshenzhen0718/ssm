@@ -81,5 +81,9 @@
         where sex = #{birth,javaType=Character,jdbcType=CHAR}
     </select>
 
+    <insert id="insertStudentByMap" parameterType="map">
+        insert into t_student values (null,#{name},#{age},#{height},#{birth},#{sex})
+    </insert>
+
 
 </mapper>

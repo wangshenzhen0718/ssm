@@ -43,6 +43,26 @@
         </where>
 
     </select>
+    <select id="selectByMultiConditionWithTrim" resultType="com.wang.mybatis.pojo.Car">
+        select * from t_car
+        <!--
+        prefix:加前缀
+        suffix:加后缀
+        prefixOverrides:删除前缀
+        suffixOverrides:删除后缀-->
+        <!--prefix="where"是在trim标签所有内容的前面添加where-->
+        <!--suffixOverrides="and | or”把trim标签中内容的后缀and或or去掉-->
 
-
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="brand!=null and brand!=''">
+                brand like "%"#{brand}"%" and
+            </if>
+            <if test="guidePrice!=null and guidePrice!=''">
+                guide_price > #{guidePrice} and
+            </if>
+            <if test="carType!=null and carType!=''">
+                car_type = #{carType} and
+            </if>
+        </trim>
+    </select>
 </mapper>

@@ -28,6 +28,15 @@ public class CarMapperTest {
 
     }
 
+    @Test
+    public void testSelectByMultiConditionWithTrim(){
+        List<Car> cars = carMapper.selectByMultiConditionWithTrim(null, 6.0, null);
+        for (Car car : cars) {
+            System.out.println(car);
+        }
+
+    }
+
 
 
 }

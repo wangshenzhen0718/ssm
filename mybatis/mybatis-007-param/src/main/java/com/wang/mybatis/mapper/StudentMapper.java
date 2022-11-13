@@ -13,4 +13,5 @@ public interface StudentMapper {
     List<Student> selectStudentByBirth(Date birth);
     List<Student> selectStudentBySex(Character sex);
     int insertStudentByMap(Map map);
+    int insertStudentByPojo(Student student);
 }

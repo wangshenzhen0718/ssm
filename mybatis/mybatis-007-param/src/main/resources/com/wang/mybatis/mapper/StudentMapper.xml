@@ -82,7 +82,12 @@
     </select>
 
     <insert id="insertStudentByMap" parameterType="map">
-        insert into t_student values (null,#{name},#{age},#{height},#{birth},#{sex})
+        insert into t_student
+        values (null, #{name}, #{age}, #{height}, #{birth}, #{sex})
+    </insert>
+    <insert id="insertStudentByPojo">
+        insert into t_student
+        values (null, #{name}, #{age}, #{height}, #{birth}, #{sex})
     </insert>
 
 

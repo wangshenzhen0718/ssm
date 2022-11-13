@@ -61,4 +61,13 @@ public class StudentMapperTest {
         SqlSessionUtil.openSession().close();
         System.out.println(i);
     }
+
+    @Test
+    public void testInsertByPojo() {
+        Student student = new Student(null,"李七",'女',18,1.60,new Date(2000-01-01));
+        int i = studentMapper.insertStudentByPojo(student);
+        SqlSessionUtil.openSession().commit();
+        SqlSessionUtil.openSession().close();
+        System.out.println(i);
+    }
 }

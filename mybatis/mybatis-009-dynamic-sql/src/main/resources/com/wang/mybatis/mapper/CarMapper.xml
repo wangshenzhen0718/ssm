@@ -3,6 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wang.mybatis.mapper.CarMapper">
+
     <select id="selectByMultiCondition" resultType="com.wang.mybatis.pojo.Car">
         <!--1=1防止条件缺少时顺序报错问题-->
         select * from t_car where 1=1
@@ -64,5 +65,45 @@
                 car_type = #{carType} and
             </if>
         </trim>
+    </select>
+
+    <update id="updateByMultiConditionWithSet">
+        update t_car
+        <!--set标签可以去除末尾的逗号，当内部有if被执行的时候会自动在前面加上set标签-->
+        <set>
+            <if test="brand!=null and brand!=''">
+                brand=#{brand},
+            </if>
+            <if test="guidePrice!=null">
+                guide_price=#{guidePrice},
+            </if>
+            <if test="carType!=null and carType!=''">
+                car_type=#{carType},
+            </if>
+            <if test="carNum!=null and carNum!=''">
+                car_num=#{carNum},
+            </if>
+            <if test="produceTime!=null">
+                produce_time=#{produceTime},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <select id="selectByMultiConditionWithChoose" resultType="com.wang.mybatis.pojo.Car">
+        select * from t_car
+        <where>
+            <choose>
+                <when test="brand!=null and brand!=''">
+                    brand like "%"#{brand}"%"
+                </when>
+                <when test="guidePrice!=null and guidePrice!=''">
+                    guide_price >#{guidePrice}
+                </when>
+                <otherwise>
+                    car_type =#{carType}
+                </otherwise>
+            </choose>
+        </where>
     </select>
 </mapper>

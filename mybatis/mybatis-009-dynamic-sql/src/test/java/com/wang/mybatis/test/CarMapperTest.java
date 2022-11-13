@@ -11,7 +11,7 @@ public class CarMapperTest {
     private CarMapper carMapper = SqlSessionUtil.openSession().getMapper(CarMapper.class);
 
     @Test
-    public void testSelectByMultiCondition(){
+    public void testSelectByMultiCondition() {
         List<Car> cars = carMapper.selectByMultiCondition("", null, null);
         for (Car car : cars) {
             System.out.println(car);
@@ -20,7 +20,7 @@ public class CarMapperTest {
     }
 
     @Test
-    public void testSelectByMultiConditionWithWhere(){
+    public void testSelectByMultiConditionWithWhere() {
         List<Car> cars = carMapper.selectByMultiConditionWithWhere("宝马", 6.0, null);
         for (Car car : cars) {
             System.out.println(car);
@@ -29,7 +29,7 @@ public class CarMapperTest {
     }
 
     @Test
-    public void testSelectByMultiConditionWithTrim(){
+    public void testSelectByMultiConditionWithTrim() {
         List<Car> cars = carMapper.selectByMultiConditionWithTrim(null, 6.0, null);
         for (Car car : cars) {
             System.out.println(car);
@@ -37,6 +37,24 @@ public class CarMapperTest {
 
     }
 
+    @Test
+    public void testUpdateByMultiConditionWithSet() {
+        Car car = new Car(29L, null, "霸道丰田", null, null, null);
+        carMapper.updateByMultiConditionWithSet(car);
+        SqlSessionUtil.openSession().commit();
+        SqlSessionUtil.openSession().close();
+
+
+    }
+
+    @Test
+    public void testSelectByMultiConditionWithChoose() {
+        List<Car> cars = carMapper.selectByMultiConditionWithChoose(null, null, null);
+        for (Car car : cars) {
+            System.out.println(car);
+        }
+
+    }
 
 
 }

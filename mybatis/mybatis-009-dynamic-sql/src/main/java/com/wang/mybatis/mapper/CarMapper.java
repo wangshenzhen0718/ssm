@@ -28,5 +28,9 @@ public interface CarMapper {
 
     int deleteByIds(@Param("ids") Long[] ids);
 
+    int deleteByIds2(@Param("ids") Long[] ids);
+
+    int insertBatch(@Param("cars") List<Car> cars);
+
 
 }

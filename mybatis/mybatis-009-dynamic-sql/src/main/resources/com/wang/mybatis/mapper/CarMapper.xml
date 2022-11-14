@@ -121,4 +121,19 @@
             #{id}
         </foreach>
     </delete>
+    <delete id="deleteByIds2">
+        delete from t_car
+        <where>
+        <foreach collection="ids" separator="or" item="id">
+            id=#{id}
+        </foreach>
+        </where>
+    </delete>
+
+    <insert id="insertBatch">
+        insert into t_car values
+        <foreach collection="cars" item="car" separator=",">
+            (null,#{car.brand},#{car.carNum},#{car.guidePrice},#{car.produceTime},#{car.carType})
+        </foreach>
+    </insert>
 </mapper>

@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="aaa">
-
+    <sql id="carColumnSql">id id, car_num carNum, brand brand, guide_price guidePrice, produce_time produceTime, car_type carType</sql>
     <resultMap id="studentMap" type="com.wang.mybatis.pojo.Car">
         <id property="id" column="id"/>
         <result property="carNum" column="car_num"/>
@@ -22,7 +22,7 @@
     </insert>
 
     <select id="selectById" resultMap="studentMap">
-        select *
+        select <include refid="carColumnSql"/>
         from t_car
         where id = #{id}
     </select>

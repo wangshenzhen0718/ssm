@@ -73,7 +73,7 @@ public class CarMapperTest {
     public void testSelectById() {
 
         SqlSession sqlSession = SqlSessionUtil.getSqlSession();
-        Car car = sqlSession.selectOne("selectById", 28);
+        Car car = sqlSession.selectOne("selectById", 35);
         System.out.println(car);
         sqlSession.commit();
         sqlSession.close();

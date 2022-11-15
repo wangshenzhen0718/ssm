@@ -22,6 +22,7 @@
         <module>mybatis-007-param</module>
         <module>mybatis-008-select</module>
         <module>mybatis-009-dynamic-sql</module>
+        <module>mybatis-010-advanced-mapping</module>
     </modules>
 
     <properties>

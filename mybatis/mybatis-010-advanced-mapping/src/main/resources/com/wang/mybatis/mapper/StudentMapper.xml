@@ -3,17 +3,38 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wang.mybatis.mapper.StudentMapper">
-    <resultMap id="studentMap" type="student">
+    <!--多对一的第一种方式-->
+    <!--    <resultMap id="studentMap" type="student">
+            <id property="sid" column="sid"></id>
+            <result property="sname" column="sname"></result>
+            <result property="clazz.cid" column="cid"></result>
+            <result property="clazz.cname" column="cname"></result>
+        </resultMap>
+        <select id="getStudentById" resultMap="studentMapAssociation">
+            select s.sid, s.sname, c.cid, c.cname
+            from t_stu s
+                     left join t_clazz c on s.cid = c.cid
+            where s.sid = #{sid}
+        </select>-->
+
+
+    <resultMap id="studentMapAssociation" type="student">
         <id property="sid" column="sid"></id>
         <result property="sname" column="sname"></result>
-        <result property="clazz.cid" column="cid"></result>
-        <result property="clazz.cname" column="cname"></result>
-
+        <!--
+            association:翻译为关联。一个Student对象关联一个Clazz对象
+            property:提供要映射的POJ0类的属性名。
+            javaType:用来指定要映射的java类型。
+        -->
+        <association property="clazz" javaType="com.wang.mybatis.pojo.Clazz">
+            <id property="cid" column="cid"></id>
+            <result property="cname" column="cname"></result>
+        </association>
     </resultMap>
 
 
-    <select id="getStudentById" resultMap="studentMap">
-        select s.sid,s.sname,c.cid,c.cname
+    <select id="getStudentByAssosition" resultMap="studentMapAssociation">
+        select s.sid, s.sname, c.cid, c.cname
         from t_stu s
                  left join t_clazz c on s.cid = c.cid
         where s.sid = #{sid}

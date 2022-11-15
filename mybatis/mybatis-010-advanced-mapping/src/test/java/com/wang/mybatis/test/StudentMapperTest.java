@@ -20,6 +20,17 @@ public class StudentMapperTest {
 
     }
 
+    @Test
+    public void testSelectByAssosition(){
+        Student student = studentMapper.getStudentByAssosition(1L);
+        System.out.println(student);
+        System.out.println(student.getSid());
+        System.out.println(student.getSname());
+        System.out.println(student.getClazz().getCid());
+        System.out.println(student.getClazz().getCname());
+
+    }
+
 
 
 }

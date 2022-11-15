@@ -5,4 +5,7 @@
 <mapper namespace="com.wang.mybatis.mapper.ClazzMapper">
 
 
+    <select id="selectClassById" resultType="Clazz">
+        select * from t_clazz where cid=#{cid}
+    </select>
 </mapper>

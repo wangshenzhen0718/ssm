@@ -11,8 +11,9 @@ import com.wang.mybatis.pojo.Student;
  */
 public interface StudentMapper {
 
-    Student getStudentById(Long id);
-    Student getStudentByAssosition(Long id);
+    Student getStudentById(Integer id);
+    Student getStudentByAssosition(Integer id);
+    Student getStudentByStep(Integer id);
 
 
 }

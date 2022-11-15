@@ -1,5 +1,7 @@
 package com.wang.mybatis.mapper;
 
+import com.wang.mybatis.pojo.Clazz;
+
 /**
  * @Author:wsz
  * @Date: 2022/11/13 14:24
@@ -8,4 +10,6 @@ package com.wang.mybatis.mapper;
  * @Since: 1.0
  */
 public interface ClazzMapper {
+
+    Clazz selectClassById(Integer cid);
 }

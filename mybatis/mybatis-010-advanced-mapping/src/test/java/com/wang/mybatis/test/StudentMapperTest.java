@@ -11,7 +11,7 @@ public class StudentMapperTest {
 
     @Test
     public void testSelectById(){
-        Student student = studentMapper.getStudentById(1L);
+        Student student = studentMapper.getStudentById(1);
         System.out.println(student);
         System.out.println(student.getSid());
         System.out.println(student.getSname());
@@ -22,7 +22,7 @@ public class StudentMapperTest {
 
     @Test
     public void testSelectByAssosition(){
-        Student student = studentMapper.getStudentByAssosition(1L);
+        Student student = studentMapper.getStudentByAssosition(1);
         System.out.println(student);
         System.out.println(student.getSid());
         System.out.println(student.getSname());
@@ -31,6 +31,16 @@ public class StudentMapperTest {
 
     }
 
+    @Test
+    public void testSelectByStep(){
+        Student student = studentMapper.getStudentByStep(1);
+        System.out.println(student);
+        System.out.println(student.getSid());
+        System.out.println(student.getSname());
+        System.out.println(student.getClazz().getCid());
+        System.out.println(student.getClazz().getCname());
+
+    }
 
 
 }

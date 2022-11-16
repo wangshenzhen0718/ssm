@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wang.mybatis.mapper.UserMapper">
+
+    <!-- 给一个用户 id，查看该用户下的所有用户组信息 -->
+    <select id="getUsers" resultMap="getGroupMap">
+
+        select g.gid, g.gname
+        from users_groups ug,
+             groups g
+        where ug.group_id = g.gid
+          and ug.user_id = #{uid}
+
+    </select>
+
+    <resultMap type="com.wang.mybatis.pojo.Groups" id="getGroupMap">
+        <id column="gid" property="gid"/>
+        <result column="gname" property="gname"/>
+        <collection property="users" ofType="com.wang.mybatis.pojo.Users">
+            <id column="uid" property="uid"/>
+            <result column="uname" property="uname"/>
+        </collection>
+    </resultMap>
+</mapper>

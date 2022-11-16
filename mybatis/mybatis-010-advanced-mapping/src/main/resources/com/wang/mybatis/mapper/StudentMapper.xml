@@ -59,7 +59,7 @@
                 在mybatis核心配置文件中添加全局配置:lazyLoadingEnabled=true， 特定关联关系中可通过设置 fetchType 属性来覆盖该项的开关状态。-->
 
 
-        <association property="clazz" select="com.wang.mybatis.mapper.ClazzMapper.selectClassById" column="cid">
+        <association property="clazz" select="com.wang.mybatis.mapper.ClazzMapper.selectClassStep" column="cid">
             <id property="cid" column="cid"></id>
             <result property="cname" column="cname"></result>
         </association>

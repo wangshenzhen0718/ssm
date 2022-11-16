@@ -10,7 +10,7 @@
         <result property="clazz.cid" column="cid"></result>
         <result property="clazz.cname" column="cname"></result>
     </resultMap>
-    <select id="getStudentById" resultMap="studentMapAssociation">
+    <select id="getStudentById" resultMap="studentMap">
         select s.sid, s.sname, c.cid, c.cname
         from t_stu s
                  left join t_clazz c on s.cid = c.cid
@@ -46,7 +46,19 @@
             property：属性
             select：调用查询方法
             column：当前查询结果中的值作为参数
+            fetchType:lazy开启懒加载，当我们只使用部分数据时 只加载需要数据
         -->
+        <!--        分步查询的优点:
+                第一:复用性增强。可以重复利用。(大步拆成N多个小碎步。每一个小碎步更加可以重复利用。>第二:采用这种分步查询，可以充分利用他们的延迟加载/懒加载机制。
+                什么是延迟加载（懒加载），有什么用?
+                延迟加载的核心原理是:用的时候再执行查询语句。不用的时候不查询。作用:提高性能。尽可能的不查，或者说尽可能的少查。来提高效率。在mybatis当中怎么开启延迟加载呢?
+                association标签中添加fetchType="lazy"
+                注意:默认情况下是没有开启延迟加载的。需要设置:fetchType="lazy"
+                这种在association标签中配置fetchType=“lazy"，是局部的设置，只对当前的association关联的sql语句起作用。
+                在实际的开发中，大部分都是需要使用延迟加载的，所以建议开启全部的延迟加载机制:
+                在mybatis核心配置文件中添加全局配置:lazyLoadingEnabled=true， 特定关联关系中可通过设置 fetchType 属性来覆盖该项的开关状态。-->
+
+
         <association property="clazz" select="com.wang.mybatis.mapper.ClazzMapper.selectClassById" column="cid">
             <id property="cid" column="cid"></id>
             <result property="cname" column="cname"></result>

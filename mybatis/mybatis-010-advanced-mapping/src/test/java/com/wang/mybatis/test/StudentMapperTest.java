@@ -37,8 +37,6 @@ public class StudentMapperTest {
         System.out.println(student);
         System.out.println(student.getSid());
         System.out.println(student.getSname());
-        System.out.println(student.getClazz().getCid());
-        System.out.println(student.getClazz().getCname());
 
     }
 

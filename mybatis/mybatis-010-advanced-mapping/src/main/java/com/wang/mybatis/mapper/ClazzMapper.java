@@ -11,8 +11,10 @@ import com.wang.mybatis.pojo.Clazz;
  */
 public interface ClazzMapper {
 
-    Clazz selectClassStep(Integer cid);
+    Clazz selectBySidStep2(Integer cid);
 
     Clazz selectByCidCollection(Integer cid);
+
+    Clazz selectByCidStep1(Integer cid);
 
 }

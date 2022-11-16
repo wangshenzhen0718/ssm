@@ -12,11 +12,13 @@ public class ClazzMapperTest {
     @Test
     public void testSelectById(){
         Clazz clazz = clazzMapper.selectByCidCollection(1000);
-
         System.out.println(clazz);
-
     }
-
+    @Test
+    public void testSelectByCidStep(){
+        Clazz clazz = clazzMapper.selectByCidStep1(1000);
+        System.out.println(clazz.getCname());
+    }
 
 
 

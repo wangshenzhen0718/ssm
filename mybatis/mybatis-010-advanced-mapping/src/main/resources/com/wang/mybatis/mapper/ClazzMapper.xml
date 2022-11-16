@@ -17,11 +17,26 @@
 
     </resultMap>
 
-
-    <select id="selectClassStep" resultType="Clazz">
+    <!--多对一分步-->
+    <select id="selectBySidStep2" resultType="Clazz">
         select * from t_clazz where cid=#{cid}
     </select>
     <select id="selectByCidCollection" resultMap="clazzResultMap">
         select s.sid,s.sname,c.cid,c.cname from t_clazz c left join t_stu s on c.cid=s.cid where c.cid=#{cid}
+    </select>
+
+
+    <!--一对多分步-->
+    <resultMap id="clazzResult" type="Clazz">
+        <id column="cid" property="cid"></id>
+        <result column="cname" property="cname"></result>
+        <collection property="students" select="com.wang.mybatis.mapper.StudentMapper.selectByCidStep2" column="cid">
+            <id column="sid" property="sid"></id>
+            <result column="sname" property="sname"></result>
+        </collection>
+    </resultMap>
+
+    <select id="selectByCidStep1" resultMap="clazzResult">
+        select cid,cname from t_clazz where cid=#{cid}
     </select>
 </mapper>

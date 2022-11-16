@@ -32,8 +32,8 @@ public class StudentMapperTest {
     }
 
     @Test
-    public void testSelectByStep(){
-        Student student = studentMapper.getStudentByStep(1);
+    public void testSelectBySidStep(){
+        Student student = studentMapper.selectBySidStep1(1);
         System.out.println(student);
         System.out.println(student.getSid());
         System.out.println(student.getSname());

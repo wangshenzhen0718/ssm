@@ -13,8 +13,9 @@ import org.apache.ibatis.annotations.Param;
 public interface CarMapper {
 
 
-
     Car selectById(@Param("id") Integer id);
+
+    Car selectById2(@Param("id") Integer id);
 
 
 }

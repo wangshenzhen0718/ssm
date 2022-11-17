@@ -4,7 +4,10 @@ import com.wang.mybatis.mapper.CarMapper;
 import com.wang.mybatis.mapper.ClazzMapper;
 import com.wang.mybatis.pojo.Car;
 import com.wang.mybatis.utils.SqlSessionUtil;
+import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Test;
 
 public class CarMapperTest {
@@ -30,11 +33,40 @@ public class CarMapperTest {
 
 
         //2.即使不在一张表增删改也会使缓存失效
-        clazzMapper.insertClazz(2000,"高三4班");
+        clazzMapper.insertClazz(2000, "高三4班");
         //一级缓存是基于sqlSession的，同一个sqlSession查询同一条语句走缓存
         Car cars2 = carMapper.selectById(35);
         System.out.println(cars2);
         sqlSession.close();
+
+
+    }
+
+    /*二级缓存的范围是SqlSessionFactory。
+    使用二级缓存需要具备以下几个条件:
+        1.<setting name="cacheEnabled" value="true">全局性地开启或关闭所有映射器配置文件中已配置的任何缓存。
+        默认就是true，无需设置
+        2．在需要使用二级缓存的SqlMapper.xml文件中添加配置: <cache />
+        3．使用二级缓存的实体类对象必须是可序列化的，也就是必须实现java.io.Serializable接口
+        4. SqlSession对象关闭或提交之后，一级缓存中的数据才会被写入到二级缓存当中。此时二级缓存才可用。*/
+
+    @Test
+    public void testselectById2() throws Exception {
+        SqlSessionFactoryBuilder sqlSessionFactoryBuilder = new SqlSessionFactoryBuilder();
+        SqlSessionFactory sqlSessionFactory = sqlSessionFactoryBuilder.build(Resources.getResourceAsStream("mybatis-config.xml"));
+        SqlSession sqlSession1 = sqlSessionFactory.openSession();
+        SqlSession sqlSession2 = sqlSessionFactory.openSession();
+        CarMapper carMapper1 = sqlSession1.getMapper(CarMapper.class);
+        //这行代码执行结束之后，实际上数据是缓存到一级缓存当中了。(sqlSession1是一级缓存。)
+        Car car1 = carMapper1.selectById2(35);
+        System.out.println(car1);
+        //如果这里不关闭SqlSession1对象的话，二级缓存中还是没有数据的。
+        //如果执行了这行代码，sqlSession1的一级缓存中的数据会放到二级缓存当中。
+        sqlSession1.close();
+        CarMapper carMapper2 = sqlSession2.getMapper(CarMapper.class);
+        //这行代码执行结束之后，实际上数据是缓存到一级缓存当中了。(sqlSession2是一级缓存。)
+        Car car2 = carMapper2.selectById2(35);
+        System.out.println(car2);
 
 
     }

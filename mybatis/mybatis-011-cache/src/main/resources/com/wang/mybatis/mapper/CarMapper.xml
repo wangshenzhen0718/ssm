@@ -12,7 +12,8 @@
     </select>
     <!--默认情况下，二级缓存机制是开启的。
     只需要在对应的SqlMapper.xml文件中添加以下标签。用来表示“我”使用该二级缓存。-->
-    <cache eviction="LRU"/>
+    <!--集成EhcacheCache组件-->
+    <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
     <select id="selectById2" resultType="com.wang.mybatis.pojo.Car">
         select *
         from t_car

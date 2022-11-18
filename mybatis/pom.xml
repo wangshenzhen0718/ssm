@@ -24,6 +24,7 @@
         <module>mybatis-009-dynamic-sql</module>
         <module>mybatis-010-advanced-mapping</module>
         <module>mybatis-011-cache</module>
+        <module>mybatis-012-generator1</module>
     </modules>
 
     <properties>

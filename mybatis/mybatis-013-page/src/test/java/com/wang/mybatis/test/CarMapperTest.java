@@ -1,6 +1,7 @@
 package com.wang.mybatis.test;
 
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.wang.mybatis.mapper.CarMapper;
 import com.wang.mybatis.pojo.Car;
 import com.wang.mybatis.utils.SqlSessionUtil;
@@ -40,6 +41,8 @@ public class CarMapperTest {
         PageHelper.startPage(pageNum,pageSize);
         List<Car> cars = mapper.selectAll();
         cars.forEach(c-> System.out.println(c));
+        PageInfo<Car> carPageInfo = new PageInfo<>(cars, 3);
+        System.out.println(carPageInfo);
         sqlSession.close();
 
 

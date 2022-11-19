@@ -26,6 +26,7 @@
         <module>mybatis-011-cache</module>
         <module>mybatis-012-generator1</module>
         <module>mybatis-013-page</module>
+        <module>mybatis-014-annotation</module>
     </modules>
 
     <properties>

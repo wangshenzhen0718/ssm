@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface CarMapper {
     List<Car> selectCarByLimit(@Param("startIndex") int startIndex,@Param("pageSize")  int pageSize);
+
+    List<Car> selectAll();
 }

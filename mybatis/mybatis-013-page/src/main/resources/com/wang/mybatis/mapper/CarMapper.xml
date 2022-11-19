@@ -6,4 +6,7 @@
     <select id="selectCarByLimit" resultType="com.wang.mybatis.pojo.Car">
         select * from t_car limit #{startIndex},#{pageSize}
     </select>
+    <select id="selectAll" resultType="com.wang.mybatis.pojo.Car">
+        select * from t_car
+    </select>
 </mapper>

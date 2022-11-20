@@ -50,7 +50,7 @@ public class CarMapperTest {
 
     @Test
     public void testSelectByMultiConditionWithChoose() {
-        List<Car> cars = carMapper.selectByMultiConditionWithChoose(null, null, null);
+        List<Car> cars = carMapper.selectByMultiConditionWithChoose(null, 500.0, null);
         for (Car car : cars) {
             System.out.println(car);
         }

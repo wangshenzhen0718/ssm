@@ -10,6 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>spring6-001-revelation</module>
+        <module>spring6-002-first</module>
     </modules>
 
     <properties>

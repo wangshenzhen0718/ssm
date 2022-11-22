@@ -4,6 +4,8 @@ import com.wang.spring6.bean.User;
 import com.wang.spring6.bean.Vip;
 import com.wang.spring6.dao.impl.UserDaoImplForMySQL;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -12,14 +14,24 @@ import java.util.Date;
 
 public class FirstSpringTest {
     @Test
-    public void testInitBean(){
+    public void testInitBean() {
         //注意:不是在调用getBean()方法的时候创建对象，电行以下代码的时候，就会实例化对象。
-        ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml","bean.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml", "bean.xml");
+        //你自己怎么去使用log4j2记录目志信息呢?
+        //第一步:创建日志记录器对象
+        //获取FirstSpringTest类的日志记录器对象，也就是说只要是FirstSpringTest类中的代码执行记录日志的话，就输出相关的日志信息。
+        Logger logger = LoggerFactory.getLogger(FirstSpringTest.class);
+
+        //第二步:记录日志，根据不同的级别来输出日志
+        logger.info("我是一条info消息");
+        logger.error("我是一条error消息");
+        logger.warn("我是一条warn消息");
+        logger.debug("我是一条debug消息");
     }
 
 
     @Test
-    public void testFirstSpringTest(){
+    public void testFirstSpringTest() {
         //第一步:获取Spring容器对象。
         // ApplicationContext:应用上下文。其实就是Spring 容器。
         // ApplicationContext是一个接口。
@@ -31,9 +43,9 @@ public class FirstSpringTest {
         // Spring底层的IoC是怎么实现的?XML解析＋工厂模式＋反射机制
         //ApplicationContext applicationContext = new ClassPathXmlApplicationContext ( "spring6.xml");
 
-        ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml","bean.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml", "bean.xml");
         //第二步:根据bean 的id 从Spring 容器中获取这个对象。
-        User user = context.getBean("userBean",User.class);
+        User user = context.getBean("userBean", User.class);
         UserDaoImplForMySQL userDao = context.getBean("userDao", UserDaoImplForMySQL.class);
         Vip vipBean = context.getBean("vipBean", Vip.class);
         //如1果bean 的id不存在，不会返回null，而是出现异常。

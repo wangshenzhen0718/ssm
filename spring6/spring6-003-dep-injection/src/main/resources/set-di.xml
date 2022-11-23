@@ -4,6 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="orderDaoBean" class="com.wang.spring6.dao.OrderDao"></bean>
+
     <!--使用ref属性来引入。这就是注入外部Bean-->
     <bean id="orderServiceBean" class="com.wang.spring6.service.OrderService">
         <property name="orderDao" ref="orderDaoBean"></property>
@@ -14,5 +15,12 @@
             <!--在property标签中使用嵌套的Bean标签，这就是内部Bean-->
             <bean class="com.wang.spring6.dao.OrderDao"></bean>
         </property>
+    </bean>
+
+    <!--set注入简单类型-->
+    <bean id="userBean" class="com.wang.spring6.bean.User">
+        <property name="username" value="zs"></property>
+        <property name="password" value="123"></property>
+        <property name="age" value="20"></property>
     </bean>
 </beans>

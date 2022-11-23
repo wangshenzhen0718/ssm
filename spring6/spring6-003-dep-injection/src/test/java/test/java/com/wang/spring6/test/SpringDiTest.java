@@ -1,5 +1,6 @@
 package test.java.com.wang.spring6.test;
 
+import com.wang.spring6.bean.User;
 import com.wang.spring6.service.CustomerService;
 import com.wang.spring6.service.OrderService;
 import com.wang.spring6.service.UserService;
@@ -7,6 +8,14 @@ import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class SpringDiTest {
+
+    /*set注入简单类型测试*/
+    @Test
+    public void testSimpleDi() {
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("set-di.xml");
+        User user = context.getBean("userBean", User.class);
+        System.out.println(user);
+    }
     /*set注入内部Bean和外部Bean测试*/
     @Test
     public void testSetDi2() {

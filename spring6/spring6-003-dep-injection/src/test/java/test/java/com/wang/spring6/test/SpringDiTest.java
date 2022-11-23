@@ -1,11 +1,22 @@
 package test.java.com.wang.spring6.test;
 
 import com.wang.spring6.service.CustomerService;
+import com.wang.spring6.service.OrderService;
 import com.wang.spring6.service.UserService;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class SpringDiTest {
+    /*set注入内部Bean和外部Bean测试*/
+    @Test
+    public void testSetDi2() {
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("set-di.xml");
+        OrderService orderService = context.getBean("orderServiceBean", OrderService.class);
+        OrderService orderService2 = context.getBean("orderServiceBean2", OrderService.class);
+        orderService.generate();
+        orderService2.generate();
+    }
+    /*set注入测试*/
     @Test
     public void testSetDi() {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
@@ -14,7 +25,7 @@ public class SpringDiTest {
         userService.updateUser();
 
     }
-
+    /*构造方法注入测试*/
     @Test
     public void testConstructorDi() {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("bean.xml");

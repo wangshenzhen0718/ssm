@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="userDaoBean" class="com.wang.spring6.dao.UserDao"></bean>
+    <bean id="vipDaoBean" class="com.wang.spring6.dao.VipDao"></bean>
+    <!--根据构造参数下标赋值-->
+    <bean id="ctServiceBean" class="com.wang.spring6.service.CustomerService">
+        <constructor-arg index="0" ref="userDaoBean"></constructor-arg>
+        <constructor-arg index="1" ref="vipDaoBean"></constructor-arg>
+    </bean>
+
+    <!--根据构造参数名字进行注入-->
+    <bean id="ctServiceBean2" class="com.wang.spring6.service.CustomerService">
+        <constructor-arg name="userDao" ref="userDaoBean"></constructor-arg>
+        <constructor-arg name="vipDao" ref="vipDaoBean"></constructor-arg>
+    </bean>
+
+    <!--spring自动判断类型-->
+    <bean id="ctServiceBean3" class="com.wang.spring6.service.CustomerService">
+        <constructor-arg ref="userDaoBean"></constructor-arg>
+        <constructor-arg ref="vipDaoBean"></constructor-arg>
+    </bean>
+</beans>

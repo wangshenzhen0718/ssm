@@ -15,6 +15,6 @@ public class VipDao {
     private static final Logger logger = LoggerFactory.getLogger(VipDao.class);
 
     public void updateVip() {
-        logger.info("数据库正在保存用户数据。");
+        logger.info("数据库正在修改用户数据。");
     }
 }

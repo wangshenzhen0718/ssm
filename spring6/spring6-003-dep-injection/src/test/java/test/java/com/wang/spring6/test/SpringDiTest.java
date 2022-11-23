@@ -1,5 +1,9 @@
 package test.java.com.wang.spring6.test;
 
+import com.wang.spring6.bean.Clazz;
+import com.wang.spring6.bean.Student;
+import com.wang.spring6.bean.User;
+import com.wang.spring6.jdbc.MyDataSource;
 import com.wang.spring6.service.CustomerService;
 import com.wang.spring6.service.OrderService;
 import com.wang.spring6.service.UserService;
@@ -7,6 +11,29 @@ import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class SpringDiTest {
+    @Test
+    public void testMyCasCade() {
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring-cascade.xml");
+        Student student = context.getBean("student", Student.class);
+        Clazz clazz = context.getBean("clazzBean", Clazz.class);
+        System.out.println(student);
+        System.out.println(clazz);
+    }
+
+    @Test
+    public void testMyDateSource() {
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring-datasource.xml");
+        MyDataSource dataSource = context.getBean("datasource", MyDataSource.class);
+        System.out.println(dataSource);
+    }
+
+    /*set注入简单类型测试*/
+    @Test
+    public void testSimpleDi() {
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("set-di.xml");
+        User user = context.getBean("userBean", User.class);
+        System.out.println(user);
+    }
     /*set注入内部Bean和外部Bean测试*/
     @Test
     public void testSetDi2() {

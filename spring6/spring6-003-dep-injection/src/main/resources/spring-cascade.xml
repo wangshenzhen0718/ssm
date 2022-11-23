@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="clazzBean" class="com.wang.spring6.bean.Clazz">
+    </bean>
+    <bean id="student" class="com.wang.spring6.bean.Student">
+        <property name="name" value="小明"></property>
+        <property name="clazz" ref="clazzBean"></property>
+        <!--set级联属性赋值-->
+        <property name="clazz.name" value="高三一班"></property>
+    </bean>
+</beans>

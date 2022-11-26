@@ -12,6 +12,7 @@
         <module>spring6-001-revelation</module>
         <module>spring6-002-first</module>
         <module>spring6-003-dep-injection</module>
+        <module>spring-004-scope</module>
     </modules>
 
     <properties>

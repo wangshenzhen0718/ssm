@@ -1,14 +1,23 @@
 package test.java.com.wang.spring6.test;
 
+import com.wang.spring6.bean.Math;
 import com.wang.spring6.bean.*;
 import com.wang.spring6.jdbc.MyDataSource;
 import com.wang.spring6.service.CustomerService;
 import com.wang.spring6.service.OrderService;
 import com.wang.spring6.service.UserService;
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class SpringDiTest {
+
+    @Test
+    public void testSpecial() {
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-special.xml");
+        Math mathBean = applicationContext.getBean("mathBean", Math.class);
+        System.out.println(mathBean);
+    }
 
     @Test
     public void testNull() {

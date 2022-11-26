@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="mathBean" class="com.wang.spring6.bean.Math">
+        <!--第一种方案：使用实体符号-->
+        <!--<property name="result" value="2 &lt; 3"/>-->
+
+        <!--第二种方案：使用<![CDATA[]]>-->
+        <property name="result">
+            <value> <![CDATA[2<3]]></value>
+        </property>
+    </bean>
+</beans>

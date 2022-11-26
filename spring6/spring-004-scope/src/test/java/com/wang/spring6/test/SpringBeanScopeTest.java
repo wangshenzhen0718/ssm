@@ -7,7 +7,23 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class SpringBeanScopeTest {
     @Test
-    public void test() {
+    public void testThreadScope() {
+
+        ApplicationContext context =new ClassPathXmlApplicationContext("spring-scope.xml");
+        SpringBean springBean = context.getBean("springBean", SpringBean.class);
+        SpringBean springBean2 = context.getBean("springBean", SpringBean.class);
+        System.out.println(springBean);
+        System.out.println(springBean2);
+        new Thread(() -> {
+            SpringBean springBean1 = context.getBean("springBean", SpringBean.class);
+            SpringBean springBean3 = context.getBean("springBean", SpringBean.class);
+            System.out.println(springBean1);
+            System.out.println(springBean3);
+        }).start();
+    }
+
+    @Test
+    public void testBeanScope() {
         /*Spring的IoC容器中，默认情况下，Bean对象是单例的。
         默认情况下，Bean对象的创建是在初始化Spring上下文的时候就完成的。*/
         ApplicationContext context =new ClassPathXmlApplicationContext("spring-scope.xml");

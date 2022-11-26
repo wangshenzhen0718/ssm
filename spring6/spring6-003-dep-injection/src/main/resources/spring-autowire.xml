@@ -7,4 +7,13 @@
     </bean>
     <bean id="orderService" class="com.wang.spring6.service.OrderService" autowire="byName">
     </bean>
+
+
+    <!--无论是byName还是byType，在装配的时候都是基于set方法的。所以set方法是必须要提供的。-->
+    <!--byType进行自动装配的时候，配置文件中某种类型的Bean必须是唯一的，不能出现多个。-->
+    <bean id="userDao" class="com.wang.spring6.dao.UserDao">
+    </bean>
+    <bean id="vipDao" class="com.wang.spring6.dao.VipDao">
+    </bean>
+    <bean id="customerService" class="com.wang.spring6.service.CustomerService" autowire="byType"></bean>
 </beans>

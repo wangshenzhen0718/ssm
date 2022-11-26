@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 
 /**
@@ -23,4 +25,7 @@ public class Person {
 
     private List<String> names;
     private Set<String> habits;
+    private Map<Integer, String> phones;
+
+    private Properties properties;
 }

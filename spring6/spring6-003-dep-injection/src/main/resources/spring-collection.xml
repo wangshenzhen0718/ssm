@@ -19,6 +19,25 @@
                 <value>豪车</value>
             </set>
         </property>
+
+        <property name="phones">
+            <map>
+                <!--如果key不是简单类型，使用 key-ref 属性-->
+                <!--如果value不是简单类型，使用 value-ref 属性-->
+                <entry key="0" value="18888888888"></entry>
+                <entry key="1" value="18888888888"></entry>
+            </map>
+        </property>
+
+        <property name="properties">
+            <!--使用<props>标签嵌套<prop>标签完成。key和value只能说String类型-->
+            <props>
+                <prop key="driver">com.mysql.cj.jdbc.Drive</prop>
+                <prop key="url">jdbc:mysql://localhost:3306/spring</prop>
+                <prop key="username">root</prop>
+                <prop key="password">root</prop>
+            </props>
+        </property>
     </bean>
 
 </beans>

@@ -23,4 +23,14 @@
         <property name="password" value="123"></property>
         <property name="age" value="20"></property>
     </bean>
+
+    <bean id="catBean" class="com.wang.spring6.bean.Cat">
+        <!--第一种方式：不给属性赋值-->
+        <!--<property name="name" value="tom"></property>-->
+        <!--第二种方式：使用<null/>-->
+        <property name="age" value="1"></property>
+        <property name="name">
+            <null></null>
+        </property>
+    </bean>
 </beans>

@@ -1,9 +1,6 @@
 package test.java.com.wang.spring6.test;
 
-import com.wang.spring6.bean.Clazz;
-import com.wang.spring6.bean.Person;
-import com.wang.spring6.bean.Student;
-import com.wang.spring6.bean.User;
+import com.wang.spring6.bean.*;
 import com.wang.spring6.jdbc.MyDataSource;
 import com.wang.spring6.service.CustomerService;
 import com.wang.spring6.service.OrderService;
@@ -12,6 +9,13 @@ import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class SpringDiTest {
+
+    @Test
+    public void testNull() {
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("set-di.xml");
+        Cat cat = context.getBean("catBean", Cat.class);
+        System.out.println(cat.getName().toUpperCase());
+    }
 
     @Test
     public void testCollection() {

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="personBean" class="com.wang.spring6.bean.Person">
+        <property name="names">
+            <list>
+                <value>小花</value>
+                <value>小明</value>
+                <value>小白</value>
+            </list>
+        </property>
+        <property name="habits">
+            <!--非简单类型可以使用ref，简单类型使用value-->
+            <set>
+                <value>美女</value>
+                <value>豪车</value>
+                <value>豪车</value>
+            </set>
+        </property>
+    </bean>
+
+</beans>

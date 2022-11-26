@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+import java.util.Set;
+
 /**
  * @Author:wsz
  * @Date: 2022/11/25 22:47
@@ -17,4 +20,7 @@ import lombok.NoArgsConstructor;
 public class Person {
     private String[] favoriteFoods;
     private Food food;
+
+    private List<String> names;
+    private Set<String> habits;
 }

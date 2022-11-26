@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="food" class="com.wang.spring6.bean.Food">
+        <property name="name" value="鸡腿"></property>
+    </bean>
+    <bean id="personBean" class="com.wang.spring6.bean.Person">
+        <property name="favoriteFoods">
+            <array>
+                <value>抽烟</value>
+                <value>喝酒</value>
+                <value>烫头</value>
+            </array>
+        </property>
+        <property name="food" ref="food"></property>
+    </bean>
+
+</beans>

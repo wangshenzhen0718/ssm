@@ -1,6 +1,7 @@
 package test.java.com.wang.spring6.test;
 
 import com.wang.spring6.bean.Clazz;
+import com.wang.spring6.bean.Person;
 import com.wang.spring6.bean.Student;
 import com.wang.spring6.bean.User;
 import com.wang.spring6.jdbc.MyDataSource;
@@ -11,6 +12,13 @@ import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class SpringDiTest {
+    @Test
+    public void testArray() {
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring-array.xml");
+        Person person = context.getBean("personBean", Person.class);
+        System.out.println(person);
+    }
+
     @Test
     public void testMyCasCade() {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring-cascade.xml");
@@ -34,6 +42,7 @@ public class SpringDiTest {
         User user = context.getBean("userBean", User.class);
         System.out.println(user);
     }
+
     /*set注入内部Bean和外部Bean测试*/
     @Test
     public void testSetDi2() {
@@ -43,6 +52,7 @@ public class SpringDiTest {
         orderService.generate();
         orderService2.generate();
     }
+
     /*set注入测试*/
     @Test
     public void testSetDi() {
@@ -52,6 +62,7 @@ public class SpringDiTest {
         userService.updateUser();
 
     }
+
     /*构造方法注入测试*/
     @Test
     public void testConstructorDi() {

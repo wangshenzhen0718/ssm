@@ -16,6 +16,7 @@
         <module>simple-factory</module>
         <module>factory-method</module>
         <module>spring6-005-bean-instantiation</module>
+        <module>spring6-006-lifecycle</module>
     </modules>
 
     <properties>

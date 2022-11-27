@@ -22,4 +22,13 @@
     <!--通过FactoryBean这个工厂Bean主要是想对普通Bean进行加工处理。-->
     <bean id="person" class="com.wang.spring6.bean.PersonFactoryBean"></bean>
 
+
+    <!--FactoryBean实战注入需要加工的Bean-->
+    <bean class="com.wang.spring6.bean.DateFactoryBean" id="date">
+        <constructor-arg name="date" value="2022-11-27"></constructor-arg>
+    </bean>
+    <bean id="student" class="com.wang.spring6.bean.Student">
+        <property name="birthday" ref="date"></property>
+    </bean>
+
 </beans>

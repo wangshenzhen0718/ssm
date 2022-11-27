@@ -1,14 +1,19 @@
 package com.wang.spring6.test;
 
-import com.wang.spring6.bean.Gun;
-import com.wang.spring6.bean.Person;
-import com.wang.spring6.bean.SpringBean;
-import com.wang.spring6.bean.Star;
+import com.wang.spring6.bean.*;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class SpringInstantiationTest {
+
+    @Test
+    public void testFactoryBean() {
+        ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+        Student student = context.getBean("student", Student.class);
+        System.out.println(student);
+    }
+
     /*
     BeanFactory和FactoryBean的区别
     BeanFactory是工厂

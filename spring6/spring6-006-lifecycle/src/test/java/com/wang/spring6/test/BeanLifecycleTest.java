@@ -8,7 +8,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class BeanLifecycleTest {
 
     @Test
-    public void testLifecycle(){
+    public void testLifecycle() {
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
         User userBean = applicationContext.getBean("userBean", User.class);
         System.out.println("第六步 使用Bean");

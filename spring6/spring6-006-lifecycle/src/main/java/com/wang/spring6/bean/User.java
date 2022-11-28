@@ -19,10 +19,10 @@ public class User {
         this.name = name;
     }
     public void initBean(){
-        System.out.println("第三步 初始化bean");
+        System.out.println("第四步 初始化bean");
     }
 
     public void destoryBean(){
-        System.out.println("第五步 销毁bean");
+        System.out.println("第七步 销毁bean");
     }
 }

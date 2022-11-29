@@ -7,6 +7,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class BeanLifecycleTest {
 
+    /*spring只对singleton的Bean进行完整的生命周期管理
+    如果是prototype作用域的Bean，Spring容器只负资将i该Bean初始化完毕。等客户端程序一旦获取到(Bean之后，Spring 容器就不再管理该对象的生命网期了*/
     @Test
     public void testLifecycle() {
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");

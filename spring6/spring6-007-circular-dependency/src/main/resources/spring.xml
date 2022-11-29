@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--singleton + setter模式下的新环依赖是没有任何问题的。-->
+    <!--singleton表示在spring容器中这种类型只有一个-->
+
+    <!--Spring为什么可以解决set + singleton模式下循环依赖？
+    根本的原因在于：
+        这种方式可以做到将“实例化Bean”和“给Bean属性赋值”这两个动作分开去完成。
+    实例化Bean的时候：调用无参数构造方法来完成。此时可以先不给属性赋值，可以提前将该Bean对象“曝光”给外界。
+    给Bean属性赋值的时候：调用setter方法来完成。
+    两个步骤是完全可以分离开去完成的，并且这两步不要求在同一个时间点上完成。
+    也就是说，Bean都是单例的，我们可以先把所有的单例Bean实例化出来，放到一个集合当中（我们可以称之为缓存），所有的单例Bean全部实例化完成之后，以后我们再慢慢的调用setter方法给属性赋值。这样就解决了循环依赖的问题。-->
+    <bean class="com.wang.spring6.bean.Husband" scope="singleton" id="husband">
+        <property name="name" value="zs"></property>
+        <property name="wife" ref="wife"></property>
+    </bean>
+    <bean class="com.wang.spring6.bean.Wife" scope="singleton" id="wife">
+        <property name="name" value="ls"></property>
+        <property name="husband" ref="husband"></property>
+    </bean>
+</beans>

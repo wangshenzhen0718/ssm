@@ -1,7 +1,9 @@
 package com.wang.spring6.test;
 
+import com.wang.spring6.bean.Student;
 import com.wang.spring6.bean.User;
 import org.junit.Test;
+import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -17,5 +19,15 @@ public class BeanLifecycleTest {
         // 只有正常关闭spring容器才会执行销毁方法
         ClassPathXmlApplicationContext context = (ClassPathXmlApplicationContext) applicationContext;
         context.close();
+    }
+    
+    @Test
+    public void testBeanRegister() {
+        Student student = new Student();
+        System.out.println(student);
+        DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
+        factory.registerSingleton("studentBean", student);
+        Student studentBean = factory.getBean("studentBean", Student.class);
+        System.out.println(studentBean);
     }
 }

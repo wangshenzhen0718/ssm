@@ -12,11 +12,40 @@
     给Bean属性赋值的时候：调用setter方法来完成。
     两个步骤是完全可以分离开去完成的，并且这两步不要求在同一个时间点上完成。
     也就是说，Bean都是单例的，我们可以先把所有的单例Bean实例化出来，放到一个集合当中（我们可以称之为缓存），所有的单例Bean全部实例化完成之后，以后我们再慢慢的调用setter方法给属性赋值。这样就解决了循环依赖的问题。-->
-    <bean class="com.wang.spring6.bean.Husband" scope="singleton" id="husband">
+    <!--<bean class="com.wang.spring6.bean.Husband" scope="singleton" id="husband">
         <property name="name" value="zs"></property>
         <property name="wife" ref="wife"></property>
     </bean>
     <bean class="com.wang.spring6.bean.Wife" scope="singleton" id="wife">
+        <property name="name" value="ls"></property>
+        <property name="husband" ref="husband"></property>
+    </bean>-->
+
+
+    <!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+
+    <!--
+    执行结果：发生了异常，信息如下：
+Caused by: org.springframework.beans.factory.BeanCurrentlyInCreationException: Error creating bean with name 'hBean': Requested bean is currently in creation: Is there an unresolvable circular reference?
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.beforeSingletonCreation(DefaultSingletonBeanRegistry.java:355)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:227)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:325)
+	... 56 more
+    和上一个测试结果相同，都是提示产生了循环依赖，并且Spring是无法解决这种循环依赖的。
+    为什么呢？
+    主要原因是因为通过构造方法注入导致的：因为构造方法注入会导致实例化对象的过程和对象属性赋值的过程没有分离开，必须在一起完成导致的。
+    -->
+    <!-- :prototype + setter模式下的循环依赖，存在问题，会出现异常!-->
+    <!--BeanCurrentlyInCreationException当前的Bean i正:在处于创建中异常。。。-->
+    <!--注意:当两个beanl的lscope都是prototype的时候，才会出现异常。如果其中任意一个是singleton的，就不会出现异常。-->
+
+    <bean class="com.wang.spring6.bean.Husband" scope="prototype" id="husband">
+        <property name="name" value="zs"></property>
+        <property name="wife" ref="wife"></property>
+    </bean>
+    <bean class="com.wang.spring6.bean.Wife" scope="prototype" id="wife">
         <property name="name" value="ls"></property>
         <property name="husband" ref="husband"></property>
     </bean>

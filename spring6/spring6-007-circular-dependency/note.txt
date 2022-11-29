@@ -1,0 +1,7 @@
+Spring只能解决setter方法注入的单例bean之间的循环依赖。
+ClassA依赖ClassB，ClassB又依赖ClassA，形成依赖闭环。
+Spring在创建ClassA对象后，不需要等给属性赋值，直接将其曝光到bean缓存当中。
+在解析ClassA的属性时，又发现依赖于ClassB，再次去获取ClassB，当解析ClassB的属性时，
+又发现需要ClassA的属性，但此时的ClassA已经被提前曝光加入了正在创建的bean的缓存中，
+则无需创建新的的ClassA的实例，直接从缓存中获取即可。从而解决循环依赖问题。
+

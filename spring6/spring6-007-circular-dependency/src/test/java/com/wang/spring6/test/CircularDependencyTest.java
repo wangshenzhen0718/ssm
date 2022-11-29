@@ -16,4 +16,13 @@ public class CircularDependencyTest {
         System.out.println(husbandBean);
         System.out.println(wifeBean);
     }
+
+    @Test
+    public void testSingletonAndSet2(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring2.xml");
+        Husband husbandBean = applicationContext.getBean("husband", Husband.class);
+        Wife wifeBean = applicationContext.getBean("wife", Wife.class);
+        System.out.println(husbandBean);
+        System.out.println(wifeBean);
+    }
 }

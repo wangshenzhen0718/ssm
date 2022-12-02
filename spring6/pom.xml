@@ -19,6 +19,7 @@
         <module>spring6-006-lifecycle</module>
         <module>spring6-007-circular-dependency</module>
         <module>review-reflect</module>
+        <module>myspring</module>
     </modules>
 
     <properties>

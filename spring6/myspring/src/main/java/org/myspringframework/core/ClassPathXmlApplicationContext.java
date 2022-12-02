@@ -4,8 +4,6 @@ import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.Node;
 import org.dom4j.io.SAXReader;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
@@ -21,7 +19,6 @@ import java.util.Map;
  * @Since: 1.0
  */
 public class ClassPathXmlApplicationContext implements ApplicationContext{
-    private static final Logger logger = LoggerFactory.getLogger(ClassPathXmlApplicationContext.class);
     private Map<String,Object> beanMap=new HashMap<>();
 
 
@@ -34,14 +31,11 @@ public class ClassPathXmlApplicationContext implements ApplicationContext{
                 Element beanElt = (Element) beanNode;
                 String id = beanElt.attributeValue("id");
                 String className = beanElt.attributeValue("class");
-                logger.info("id:"+id);
-                logger.info("className:"+className);
                 try {
                     Class<?> clazz = Class.forName(className);
                     Constructor<?> defaultConstructor = clazz.getDeclaredConstructor();
                     Object bean = defaultConstructor.newInstance();
                     beanMap.put(id,bean);
-                    logger.info(beanMap.toString());
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }

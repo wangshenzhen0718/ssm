@@ -20,6 +20,7 @@
         <module>spring6-007-circular-dependency</module>
         <module>review-reflect</module>
         <module>myspring</module>
+        <module>myspring-test</module>
     </modules>
 
     <properties>

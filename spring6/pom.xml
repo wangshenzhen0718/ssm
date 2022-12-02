@@ -21,6 +21,7 @@
         <module>review-reflect</module>
         <module>myspring</module>
         <module>myspring-test</module>
+        <module>review-annotation</module>
     </modules>
 
     <properties>

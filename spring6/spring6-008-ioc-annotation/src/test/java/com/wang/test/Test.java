@@ -4,6 +4,7 @@ import com.wang.bean3.MyDataSource;
 import com.wang.bean3.Product;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.wang.service.OrderService;
 
 public class Test {
     @org.junit.Test
@@ -32,5 +33,12 @@ public class Test {
         ApplicationContext context=new ClassPathXmlApplicationContext("spring-di-annotation.xml");
         Product product = context.getBean("product", Product.class);
         System.out.println(product);
+    }
+
+    @org.junit.Test
+    public void testAutoWired(){
+        ApplicationContext context=new ClassPathXmlApplicationContext("spring-autowired.xml");
+        OrderService orderService = context.getBean("orderService", OrderService.class);
+        orderService.generate();
     }
 }

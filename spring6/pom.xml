@@ -22,6 +22,7 @@
         <module>myspring</module>
         <module>myspring-test</module>
         <module>review-annotation</module>
+        <module>spring6-008-ioc-annotation</module>
     </modules>
 
     <properties>

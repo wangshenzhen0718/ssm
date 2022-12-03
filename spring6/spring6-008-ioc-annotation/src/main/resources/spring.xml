@@ -5,6 +5,9 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                            http://www.springframework.org/schema/beans/spring-beans.xsd
                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-    <context:component-scan base-package="com.wang.bean"></context:component-scan>
+    <!--如果是多个包怎么办？有两种解决方案：
+    ● 第一种：在配置文件中指定多个包，用逗号隔开。
+    ● 第二种：指定多个包的共同父包，但是会牺牲部分效率-->
+    <context:component-scan base-package="com.wang.bean,com.wang.dao"></context:component-scan>
 
 </beans>

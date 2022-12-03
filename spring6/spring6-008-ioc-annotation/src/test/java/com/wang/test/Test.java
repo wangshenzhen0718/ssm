@@ -8,6 +8,8 @@ public class Test {
     public void test(){
         ApplicationContext context=new ClassPathXmlApplicationContext("spring.xml");
         Object userBean = context.getBean("user");
+        Object orderDaoBean = context.getBean("orderDao");
         System.out.println(userBean);
+        System.out.println(orderDaoBean);
     }
 }

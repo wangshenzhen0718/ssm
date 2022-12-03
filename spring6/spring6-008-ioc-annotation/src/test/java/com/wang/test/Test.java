@@ -1,9 +1,11 @@
 package com.wang.test;
 
+import cn.wang.config.Spring6Configuration;
 import cn.wang.service.StudentService;
 import com.wang.bean3.MyDataSource;
 import com.wang.bean3.Product;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.wang.service.OrderService;
 
@@ -46,6 +48,13 @@ public class Test {
     @org.junit.Test
     public void testResource(){
         ApplicationContext context=new ClassPathXmlApplicationContext("spring-resource.xml");
+        StudentService studentService = context.getBean("studentService", StudentService.class);
+        studentService.deleteStudent();
+    }
+
+    @org.junit.Test
+    public void testNoXML(){
+        ApplicationContext context=new AnnotationConfigApplicationContext(Spring6Configuration.class);
         StudentService studentService = context.getBean("studentService", StudentService.class);
         studentService.deleteStudent();
     }

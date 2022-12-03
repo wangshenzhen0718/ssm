@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <!--第一种解决方案:
+        use-default-filters= "false "
+        如果这个属性是false，表示com.wang.bean2包下所有的带有声明Bean的主解全部失效。
+        @Component @Controller @Service @Repository全部失效。
+    -->
+    <!--    <context:component-scan base-package="com.wang.bean2" use-default-filters="false">
+            <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+            </context:component-scan>
+    -->
+
+    <!--第二种解决方案:
+        use-default-filters= "true "
+        如果这个属性是false，表示com.wang.bean2包下所有的带有声明Bean的主解全部生效。
+        @Component @Controller @Service @Repository全部失效。
+        @Component是所有声明Bean注解的父类排除后会都排除
+    -->
+    <context:component-scan base-package="com.wang.bean2" use-default-filters="true">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+
+    </context:component-scan>
+
+</beans>

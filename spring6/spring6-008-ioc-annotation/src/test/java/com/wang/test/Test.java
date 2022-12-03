@@ -12,4 +12,9 @@ public class Test {
         System.out.println(userBean);
         System.out.println(orderDaoBean);
     }
+
+    @org.junit.Test
+    public void testChoose(){
+        ApplicationContext context=new ClassPathXmlApplicationContext("spring-choose.xml");
+    }
 }

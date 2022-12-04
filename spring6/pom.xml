@@ -25,6 +25,7 @@
         <module>spring6-008-ioc-annotation</module>
         <module>spring6-009-jdbc</module>
         <module>static-proxy</module>
+        <module>dynamic-proxy-jdk</module>
     </modules>
 
     <properties>

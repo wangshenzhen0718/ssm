@@ -26,6 +26,7 @@
         <module>spring6-009-jdbc</module>
         <module>static-proxy</module>
         <module>dynamic-proxy-jdk</module>
+        <module>dynamic-proxy-cglib</module>
     </modules>
 
     <properties>

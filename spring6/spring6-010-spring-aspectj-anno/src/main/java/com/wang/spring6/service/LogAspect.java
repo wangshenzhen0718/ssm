@@ -1,5 +1,6 @@
 package com.wang.spring6.service;
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.core.annotation.Order;
@@ -24,8 +25,9 @@ public class LogAspect {
     //切面=通知+切点
 
     @Before("pointCut()")
-    public void advanceBefore() {
+    public void advanceBefore(JoinPoint joinPoint) {
         System.out.println("这是一段前置代码！！！");
+        System.out.println(joinPoint.getSignature());
     }
 
     @AfterReturning("pointCut()")

@@ -18,4 +18,6 @@ public interface AccountDao {
      */
     int update(Account act);
 
+    int insert(Account act);
+
 }

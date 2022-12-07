@@ -50,6 +50,11 @@ public class AccountServiceImpl implements AccountService {
         accountDao.insert(account);
 
         Account account1 = new Account("act-004",1000.0);
-        accountService.save(account1);//上面是REQUIRED  所以加入
+        try {
+
+            accountService.save(account1);
+        }catch (Exception e){
+
+        }
     }
 }

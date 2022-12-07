@@ -25,7 +25,7 @@ public class AccountServiceImpl2 implements AccountService {
         System.out.println("取款");
     }
 
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     @Override
     public void save(Account account) {
         accountDao.insert(account);

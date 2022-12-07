@@ -5,6 +5,7 @@ import com.wang.bank.pojo.Account;
 import com.wang.bank.service.AccountService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service("accountService")
 public class AccountServiceImpl implements AccountService {
@@ -13,6 +14,7 @@ public class AccountServiceImpl implements AccountService {
     private AccountDao accountDao;
 
     @Override
+    @Transactional
     public void transfer(String fromActno, String toActno, double money) {
         // 查询账户余额是否充足
         Account fromAct = accountDao.selectByActno(fromActno);
@@ -24,8 +26,8 @@ public class AccountServiceImpl implements AccountService {
         fromAct.setBalance(fromAct.getBalance() - money);
         toAct.setBalance(toAct.getBalance() + money);
         int count = accountDao.update(fromAct);
-        String s=null;
-        s.toString();
+/*        String s=null;
+        s.toString();*/
         count += accountDao.update(toAct);
         if (count != 2) {
             throw new RuntimeException("转账失败，请联系银行");

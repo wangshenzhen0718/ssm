@@ -28,6 +28,7 @@
         <module>dynamic-proxy-jdk</module>
         <module>dynamic-proxy-cglib</module>
         <module>spring6-010-spring-aspectj-anno</module>
+        <module>spring6-011-spring-aspectj-aop-xml</module>
     </modules>
 
     <properties>

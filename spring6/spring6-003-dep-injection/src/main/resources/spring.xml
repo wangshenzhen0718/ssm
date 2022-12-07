@@ -5,7 +5,7 @@
 
     <bean id="userDaoBean" class="com.wang.spring6.dao.UserDao"></bean>
     <bean id="vipDaoBean" class="com.wang.spring6.dao.VipDao"></bean>
-    <bean id="userServiceBean" class="com.wang.spring6.service.UserService">
+    <bean id="userServiceBean" class="com.wang.spring6.com.wang.spring6.service.UserService">
         <!--想让Spring 调用对应的set方法，需要配置property标签-->
         <!-- name属性怎么指定值: set方法的方法名，去掉set，然后把剩下的单词首字母变小写，写到这里。-->
         <property name="userDao" ref="userDaoBean"></property>

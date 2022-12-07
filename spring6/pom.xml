@@ -12,7 +12,7 @@
         <module>spring6-001-revelation</module>
         <module>spring6-002-first</module>
         <module>spring6-003-dep-injection</module>
-        <module>spring-004-scope</module>
+        <module>spring6-004-scope</module>
         <module>simple-factory</module>
         <module>factory-method</module>
         <module>spring6-005-bean-instantiation</module>

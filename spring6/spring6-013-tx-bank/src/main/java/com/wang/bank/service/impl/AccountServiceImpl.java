@@ -29,8 +29,8 @@ public class AccountServiceImpl implements AccountService {
         fromAct.setBalance(fromAct.getBalance() - money);
         toAct.setBalance(toAct.getBalance() + money);
         int count = accountDao.update(fromAct);
-/*        String s=null;
-        s.toString();*/
+        String s=null;
+        s.toString();
         count += accountDao.update(toAct);
         if (count != 2) {
             throw new RuntimeException("转账失败，请联系银行");

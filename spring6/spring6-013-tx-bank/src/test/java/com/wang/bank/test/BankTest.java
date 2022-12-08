@@ -42,7 +42,7 @@ public class BankTest {
     public void testIsolation2(){
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
         IsolationService2 i2 = applicationContext.getBean("i2", IsolationService2.class);
-        Account act = new Account("act-004", 1000.0);
+        Account act = new Account("act-006", 1000.0);
         i2.save(act);
     }
 }

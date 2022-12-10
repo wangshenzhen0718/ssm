@@ -33,6 +33,7 @@
         <module>spring6-013-tx-bank</module>
         <module>spring6-014-tx-bank-xml</module>
         <module>spring6-015-junit</module>
+        <module>spring6-016-sm</module>
     </modules>
 
     <properties>
